@@ -45,7 +45,7 @@ export default function StyleguidePage() {
   usePageMeta({ title: 'Visual Language', noIndex: true });
 
   const [signatureRoom, heroRoom, detailRoom] = rooms;
-  const [yoga, sailing, , , coastalWalk] = experiences;
+  const [morningRitual, forestWalk, , , slowAfternoon] = experiences;
   const [restaurant] = dining;
 
   return (
@@ -209,17 +209,17 @@ export default function StyleguidePage() {
         <Container className="mt-section">
           <div className="grid-editorial gap-y-12">
             <figure className="group col-span-4 md:col-span-5">
-              <ImageWrapper src={yoga!.image} alt={yoga!.title} ratio="editorial" zoomOnHover sizes="(min-width: 48rem) 40vw, 100vw" />
+              <ImageWrapper src={morningRitual!.image} alt={morningRitual!.title} ratio="editorial" zoomOnHover sizes="(min-width: 48rem) 40vw, 100vw" />
               <figcaption>
-                <p className="eyebrow mt-6 text-fg-subtle">{yoga!.category}</p>
-                <p className="mt-3 font-display text-h4">{yoga!.title}</p>
+                <p className="eyebrow mt-6 text-fg-subtle">{morningRitual!.category}</p>
+                <p className="mt-3 font-display text-h4">{morningRitual!.title}</p>
               </figcaption>
             </figure>
             <figure className="group col-span-4 md:col-span-6 md:col-start-7 md:mt-40">
-              <ImageWrapper src={sailing!.image} alt={sailing!.title} ratio="landscape" zoomOnHover sizes="(min-width: 48rem) 50vw, 100vw" />
+              <ImageWrapper src={slowAfternoon!.image} alt={slowAfternoon!.title} ratio="landscape" zoomOnHover sizes="(min-width: 48rem) 50vw, 100vw" />
               <figcaption>
-                <p className="eyebrow mt-6 text-fg-subtle">{sailing!.category}</p>
-                <p className="mt-3 font-display text-h4">{sailing!.title}</p>
+                <p className="eyebrow mt-6 text-fg-subtle">{slowAfternoon!.category}</p>
+                <p className="mt-3 font-display text-h4">{slowAfternoon!.title}</p>
               </figcaption>
             </figure>
           </div>
@@ -263,8 +263,8 @@ export default function StyleguidePage() {
           <div className="grid-editorial items-center gap-y-14">
             <div className="col-span-4 md:col-span-5 md:col-start-2">
               <ImageWrapper
-                src={coastalWalk!.image}
-                alt={coastalWalk!.title}
+                src={forestWalk!.image}
+                alt={forestWalk!.title}
                 ratio="tall"
                 shape="arch"
                 reveal

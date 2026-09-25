@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 import { buildSrcSet } from '@/lib/images';
 import type { MaskOrigin } from '@/lib/motion';
@@ -60,6 +60,8 @@ type ImageWrapperProps = {
   graded?: boolean;
   /** CSS object-position for editorial cropping, e.g. "center 30%" */
   position?: string;
+  /** object-position below the md breakpoint, where portrait crops reframe the subject */
+  mobilePosition?: string;
   /** Surface shown while loading — `dark` for photography on dark heroes */
   placeholder?: 'sand' | 'dark';
   className?: string;
@@ -80,6 +82,7 @@ export function ImageWrapper({
   shape = 'rect',
   graded = true,
   position,
+  mobilePosition,
   placeholder = 'sand',
   className,
   imageClassName,
@@ -108,9 +111,18 @@ export function ImageWrapper({
         decoding={priority ? 'sync' : 'async'}
         fetchPriority={priority ? 'high' : 'auto'}
         onLoad={() => setLoaded(true)}
-        style={position ? { objectPosition: position } : undefined}
+        style={
+          position || mobilePosition
+            ? ({
+                '--object-position': position ?? 'center',
+                '--object-position-mobile': mobilePosition ?? position ?? 'center',
+              } as CSSProperties)
+            : undefined
+        }
         className={cn(
           'absolute inset-0 h-full w-full object-cover transition-[opacity,scale] duration-[1400ms] ease-out',
+          (position || mobilePosition) &&
+            'object-[var(--object-position-mobile)] md:object-[var(--object-position)]',
           loaded ? 'opacity-100' : 'opacity-0',
           graded && 'photo-grade',
           zoomOnHover && 'group-hover:scale-[1.035]',

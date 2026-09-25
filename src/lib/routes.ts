@@ -19,6 +19,10 @@ export function roomPath(slug: string) {
   return `/rooms/${slug}`;
 }
 
+export function experiencePath(slug: string) {
+  return `${routes.experiences}#${slug}`;
+}
+
 type BookingParams = {
   room?: string;
   offer?: string;

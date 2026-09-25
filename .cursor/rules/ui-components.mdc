@@ -19,7 +19,11 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 | "Book your stay" CTA | `<Button onClick={() => openBooking()}>` via `useBooking()` — opens the shared booking panel |
 | Quantity input | `<Stepper>` |
 | Tiny uppercase facts with hairline dividers | `<MetaList items label>` |
+| "01 / 06 —— Label" index line | `<IndexLabel index total label>` |
+| Photo that links somewhere (hover zoom + arrow chip, or overlaid caption as children) | `<LinkedImage src alt to ratio>` |
+| Different crop on mobile | `<ImageWrapper position mobilePosition>` (mobile applies below `md`) |
 | Room photography / room caption | `<RoomImage>` + `<RoomDetails>` from `@/components/hotel/rooms` |
+| Experience photography / caption / category filter | `<ExperienceImage>`, `<ExperienceCaption>`, `<ExperienceFilterBar>` from `@/components/hotel/experiences` |
 | Photo bleeding off one edge, copy on the 12-col grid | `grid-editorial-bleed` + `col-full` / `col-content` / `lg:col-[1/8]` (line 1 = viewport edge, column n starts at line n + 1) |
 
 ```tsx

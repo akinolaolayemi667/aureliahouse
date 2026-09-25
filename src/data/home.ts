@@ -26,3 +26,12 @@ export const homeRooms = {
   closing: { label: 'Explore every room and suite', to: routes.rooms },
   rateNote: 'Rates are indicative starting prices per night. Availability is confirmed by our reservations team.',
 };
+
+export const homeExperiences = {
+  eyebrow: 'The experiences',
+  title: 'Days Worth\nRemembering.',
+  titleEmphasis: 'Days',
+  description:
+    'From quiet mornings and private rituals to slow afternoons surrounded by nature, every experience at Aurelia House is designed to make time feel different.',
+  experienceCta: 'Discover more',
+};

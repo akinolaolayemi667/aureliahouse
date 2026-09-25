@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Stagger, StaggerItem } from '@/components/animations';
 import { Button } from '@/components/ui/Button';
+import { IndexLabel } from '@/components/ui/IndexLabel';
 import { Link } from '@/components/ui/Link';
 import { MetaList } from '@/components/ui/MetaList';
 import type { Room } from '@/data/types';
@@ -19,20 +20,14 @@ type RoomDetailsProps = {
   className?: string;
 };
 
-const pad = (value: number) => String(value).padStart(2, '0');
-
 /* Editorial room caption: index and category, name, story, facts, rate and link. */
 export function RoomDetails({ room, index, total, featured = false, ctaLabel, className }: RoomDetailsProps) {
   const facts = [room.beds, formatGuests(room.guests), formatSize(room.size)];
 
   return (
     <Stagger className={cn('flex flex-col items-start', className)}>
-      <StaggerItem className="caps flex w-full items-center gap-4 text-label-sm">
-        <span className="shrink-0 tabular-nums text-fg">
-          {pad(index)} <span className="text-fg-muted">/ {pad(total)}</span>
-        </span>
-        <span aria-hidden="true" className="h-px w-8 bg-line-strong md:w-12" />
-        <span className="text-accent">{room.category}</span>
+      <StaggerItem className="w-full">
+        <IndexLabel index={index} total={total} label={room.category} />
       </StaggerItem>
 
       <StaggerItem>

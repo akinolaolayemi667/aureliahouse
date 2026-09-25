@@ -24,7 +24,7 @@ export type Room = {
   amenities: string[];
 };
 
-export type ExperienceCategory = 'Wellness' | 'Culinary' | 'Culture' | 'Nature' | 'Private';
+export type ExperienceCategory = 'Wellness' | 'Nature' | 'Culinary' | 'Dining' | 'Leisure' | 'Night';
 
 export type Experience = {
   id: string;
@@ -32,10 +32,25 @@ export type Experience = {
   title: string;
   description: string;
   image: string;
+  /** Describes the photograph for screen readers */
+  imageAlt: string;
+  /** CSS object-position for editorial cropping */
+  imagePosition?: string;
+  /** Crop for small screens, where tall frames reframe the subject */
+  imagePositionMobile?: string;
   category: ExperienceCategory;
-  /** Minutes */
+  /** When it happens, e.g. "Golden hour" */
+  moment: string;
+  /** Minutes — omit for open-ended experiences */
   duration?: number;
   featured?: boolean;
+};
+
+/** A filter groups one or more categories under a single label; no categories means "All" */
+export type ExperienceFilter = {
+  id: string;
+  label: string;
+  categories?: readonly ExperienceCategory[];
 };
 
 export type MealPeriod = 'Breakfast' | 'Lunch' | 'Dinner' | 'All day' | 'Evening';
