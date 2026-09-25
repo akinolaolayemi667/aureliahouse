@@ -36,6 +36,14 @@ export const homeExperiences = {
   experienceCta: 'Discover more',
 };
 
+export const homeSpa = {
+  eyebrow: 'Spa & wellness',
+  title: 'Make Space\nfor Stillness.',
+  titleEmphasis: 'Stillness.',
+  description:
+    'A quiet collection of treatments and rituals designed to restore balance, encourage rest and reconnect you with the present moment.',
+};
+
 export const homeDining = {
   eyebrow: 'At the table',
   title: 'Food With\na Sense of Place.',

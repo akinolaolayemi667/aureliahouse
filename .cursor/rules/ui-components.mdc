@@ -24,6 +24,7 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 | Different crop on mobile | `<ImageWrapper position mobilePosition>` (mobile applies below `md`) |
 | Room photography / room caption | `<RoomImage>` + `<RoomDetails>` from `@/components/hotel/rooms` |
 | Hairline that draws in on scroll | `<Divider reveal>` (vertical: `orientation="vertical"`) |
+| Muted gold separator (sparingly — one short rule per caption at most) | `<span aria-hidden className="h-px w-10 bg-gold/70" />` |
 | Service hours row / typographic menu page | `<DiningServices>`, `<MenuPreview>` from `@/components/hotel/dining` |
 | Experience photography / caption / category filter | `<ExperienceImage>`, `<ExperienceCaption>`, `<ExperienceFilterBar>` from `@/components/hotel/experiences` |
 | Photo bleeding off one edge, copy on the 12-col grid | `grid-editorial-bleed` + `col-full` / `col-content` / `lg:col-[1/8]` (line 1 = viewport edge, column n starts at line n + 1) |

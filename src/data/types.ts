@@ -73,6 +73,17 @@ export type MenuCourse = {
   dishes: MenuDish[];
 };
 
+export type WellnessCategory = {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  /** Describes the photograph for screen readers */
+  imageAlt: string;
+  /** CSS object-position for editorial cropping */
+  imagePosition?: string;
+};
+
 export type Offer = {
   id: string;
   slug: string;
