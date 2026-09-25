@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { Reveal, Stagger, StaggerItem, TextReveal } from '@/components/animations';
+import { Stagger, StaggerItem } from '@/components/animations';
 import { ExperienceFilterBar } from '@/components/hotel/experiences/ExperienceFilterBar';
-import { Button } from '@/components/ui/Button';
-import { Divider } from '@/components/ui/Divider';
+import { ClosingInvitation } from '@/components/layout/ClosingInvitation';
+import { PageIntro } from '@/components/layout/PageIntro';
+import { FeatureBand } from '@/components/ui/FeatureBand';
 import { ImageWrapper } from '@/components/ui/ImageWrapper';
 import { IndexBand } from '@/components/ui/IndexBand';
 import { IndexLabel } from '@/components/ui/IndexLabel';
@@ -48,70 +48,44 @@ export default function ExperiencesPage() {
         titleEmphasis={experiencesArranged.titleEmphasis}
         items={experiencesArranged.items}
       />
-      <ExperiencesClosing />
+      <ClosingInvitation
+        eyebrow={experiencesClosing.eyebrow}
+        title={experiencesClosing.title}
+        titleEmphasis={experiencesClosing.titleEmphasis}
+        primary={experiencesClosing.cta}
+        secondary={experiencesClosing.booking}
+      />
     </>
   );
 }
 
 function ExperiencesIntro() {
   return (
-    <Section tone="ivory" spacing="lg" className="pb-section-sm">
-      <header className="grid-editorial-bleed gap-y-10">
-        <div className="col-content lg:col-[2/9]">
-          <Reveal immediate delay={0.2}>
-            <p className="eyebrow text-accent">{experiencesPage.eyebrow}</p>
-          </Reveal>
-          <TextReveal
-            as="h1"
-            immediate
-            delay={0.35}
-            text={experiencesPage.title}
-            emphasis={experiencesPage.titleEmphasis}
-            interval={0.09}
-            className="mt-6 font-display text-display text-fg md:mt-8"
-          />
-        </div>
-        <Reveal immediate delay={0.8} className="col-content md:col-[7/14] lg:col-[10/14] lg:self-end lg:pb-3">
-          <p className="max-w-sm text-lead text-fg-muted">{experiencesPage.description}</p>
-        </Reveal>
-        <Reveal immediate delay={1} className="col-content border-t border-line pt-5 lg:col-[2/14]">
-          <MetaList items={[`${experiences.length} experiences`, ...experiencesPage.facts]} label="Experiences at a glance" />
-        </Reveal>
-      </header>
-    </Section>
+    <PageIntro
+      eyebrow={experiencesPage.eyebrow}
+      title={experiencesPage.title}
+      titleEmphasis={experiencesPage.titleEmphasis}
+      description={experiencesPage.description}
+    >
+      <div className="border-t border-line pt-5">
+        <MetaList items={[`${experiences.length} experiences`, ...experiencesPage.facts]} label="Experiences at a glance" />
+      </div>
+    </PageIntro>
   );
 }
 
 /* The signature ritual, edge to edge, pointing down to its place in the collection. */
 function SignatureBand() {
   return (
-    <div data-nav-tone="dark" className="bg-ivory">
-      <ImageWrapper
-        src={signatureExperience.image}
-        alt={signatureExperience.imageAlt}
-        position={signatureExperience.imagePosition}
-        ratio="video"
-        reveal="bottom"
-        priority
-        sizes="100vw"
-        className="max-md:aspect-tall 2xl:aspect-cinema"
-      >
-        <div aria-hidden="true" className="scrim-hero pointer-events-none absolute inset-0 max-md:scrim-hero-tall" />
-        <div className="relative flex h-full flex-col justify-end gutter-x pb-10 md:pb-14 lg:pb-16">
-          <Reveal delay={0.5} className="mx-auto w-full max-w-content">
-            <p className="caps flex items-center gap-5 text-label text-fg text-legible">
-              <span aria-hidden="true" className="h-px w-10 bg-gold/80 md:w-16" />
-              {signatureExperience.label}
-            </p>
-            <p className="mt-6 font-display text-h1 text-fg text-legible md:mt-8">{signatureExperience.title}</p>
-            <p className="mt-5 max-w-md text-body text-fg-muted">{signatureExperience.description}</p>
-            <Link to={experiencePath(signatureExperience.slug)} variant="luxury" className="mt-8">
-              {signatureExperience.cta}
-            </Link>
-          </Reveal>
-        </div>
-      </ImageWrapper>
-    </div>
+    <FeatureBand
+      image={{ src: signatureExperience.image, alt: signatureExperience.imageAlt, position: signatureExperience.imagePosition }}
+      label={signatureExperience.label}
+      title={signatureExperience.title}
+      titleAs="p"
+      description={signatureExperience.description}
+      action={{ label: signatureExperience.cta, to: experiencePath(signatureExperience.slug) }}
+      priority
+    />
   );
 }
 
@@ -265,40 +239,5 @@ function ExperienceDetail({ experience, index, spread = false, className }: Expe
         </StaggerItem>
       </div>
     </Stagger>
-  );
-}
-
-function ExperiencesClosing() {
-  const { cta, booking } = experiencesClosing;
-
-  return (
-    <Section tone="ivory">
-      <div className="grid-editorial-bleed">
-        <div className="col-content flex flex-col items-center text-center md:col-[3/13] lg:col-[4/12]">
-          <Divider reveal className="bg-line-strong/60" />
-          <Reveal className="mt-16 md:mt-20">
-            <p className="eyebrow text-accent">{experiencesClosing.eyebrow}</p>
-          </Reveal>
-          <TextReveal
-            as="h2"
-            text={experiencesClosing.title}
-            emphasis={experiencesClosing.titleEmphasis}
-            interval={0.1}
-            className="mt-8 font-display text-h2 text-fg"
-          />
-          <Reveal
-            delay={0.5}
-            className="mt-12 flex w-full flex-col items-center gap-8 sm:w-auto sm:flex-row sm:gap-10 md:mt-14"
-          >
-            <Button to={cta.to} size="lg" icon={<ArrowRight />} className="w-full sm:w-auto">
-              {cta.label}
-            </Button>
-            <Link to={booking.to} variant="luxury">
-              {booking.label}
-            </Link>
-          </Reveal>
-        </div>
-      </div>
-    </Section>
   );
 }

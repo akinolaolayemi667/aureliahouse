@@ -25,6 +25,9 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 | Room photography / room caption | `<RoomImage>` + `<RoomDetails>` from `@/components/hotel/rooms` (`headingAs="h2"` where rooms are the page's main sections) |
 | "Every stay includes" band | `<StayIncludes>` from `@/components/hotel/rooms/StayIncludes` |
 | Sand band: headline beside a two-column list of label + detail notes | `<IndexBand eyebrow title titleEmphasis items>` from `@/components/ui/IndexBand` |
+| Interior page opening (display h1, description, optional facts row) | `<PageIntro eyebrow title titleEmphasis description>{facts}</PageIntro>` from `@/components/layout/PageIntro` |
+| Full-bleed photo band with story over a hero scrim | `<FeatureBand image label title description action priority>` from `@/components/ui/FeatureBand` |
+| Interior page closing (hairline, centred headline, button + link) | `<ClosingInvitation eyebrow title titleEmphasis primary secondary>` from `@/components/layout/ClosingInvitation` |
 | Crossfading photographs driven by a selection | Stack every frame absolutely and toggle opacity (see `MomentSequence` in `HomeMoment`) — frames preload, so there is no blank flash; keep `AnimatePresence` for the text beside it |
 | Reserve a specific room | `openBooking({ room: slug })` — a bare `openBooking()` always means "any room" |
 | Link to a pre-filled contact message | `${routes.contact}?enquiry=<topic>` — topics live in `enquiryTopics` (`@/data/contact`); a room slug or `rooms` means a stay |
