@@ -1,0 +1,37 @@
+---
+description: Reuse Aurelia House UI primitives and animation components instead of duplicating styles
+globs: src/**/*.tsx
+alwaysApply: false
+---
+
+# UI Components
+
+Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-create a button, link, heading, section or image wrapper inline.
+
+| Need | Use |
+|---|---|
+| Primary / secondary CTA | `<Button>` / `<Button variant="secondary">`; over photos `variant="light"` |
+| "Discover more →" | `<Link variant="luxury">` |
+| Page/section rhythm & surface | `<Section tone spacing textured>` + `<Container size>` |
+| Eyebrow + title + description | `<SectionHeading eyebrow title description size as>` |
+| Photography | `<ImageWrapper ratio overlay zoomOnHover reveal shape>` |
+| Entrances | `Reveal`, `FadeIn`, `Stagger`/`StaggerItem`, `TextReveal`, `ImageReveal`, `SlowScale` |
+
+```tsx
+// ❌ BAD — hardcoded colours, ad-hoc button, rounded card
+<div className="rounded-xl bg-[#17352B] p-6 shadow-lg">
+  <button className="bg-black px-4 py-2 text-white">Book</button>
+</div>
+
+// ✅ GOOD — tokens, primitives, tone-aware
+<Section tone="forest" spacing="md">
+  <Container>
+    <SectionHeading eyebrow="Stay" title="Rooms & Suites" />
+    <Button to={routes.booking} variant="light">Book your stay</Button>
+  </Container>
+</Section>
+```
+
+- Routes come from `@/lib/routes`; content from typed data in `@/data`.
+- Headings: visual size (`size`) is independent of semantic level (`as`) — keep one `h1` per page.
+- Register any new font-size/shadow/aspect token in `src/lib/cn.ts` so `cn()` merges it correctly.

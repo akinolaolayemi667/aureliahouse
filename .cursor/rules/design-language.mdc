@@ -1,0 +1,29 @@
+---
+description: Aurelia House design style — Mediterranean Quiet Luxury (editorial, organic modern). Apply to all UI work.
+alwaysApply: true
+---
+
+# Aurelia House — Mediterranean Quiet Luxury
+
+The site must feel expensive through **composition, not decoration**: an editorial layout warmed by Mediterranean materials and light. Reference `/styleguide` (`src/pages/StyleguidePage.tsx`) before designing anything new.
+
+## Always
+- Large immersive photography; full-bleed and asymmetric editorial compositions (`grid-editorial`, `layout-bleed`, `col-bleed-left/right`, `stack`).
+- Big light Cormorant headlines (`text-display`, `text-h1`–`text-h3`) against small uppercase labels (`eyebrow`, `caps text-label*`) and Inter body copy (`text-body`, `text-lead`).
+- Generous whitespace (`py-section*`, `gutter-x`) and thin hairline dividers (`Divider`, `border-line`).
+- Warmth from material: `Section tone="sand" textured`, the default `photo-grade` on images, an occasional `shape="arch"` portrait image, one italic word per headline at most (`<em className="serif-italic">`).
+- Palette tokens only: ivory, ivory-soft, charcoal(-deep), forest(-deep), gold(-soft), taupe, sand, white. Use tone-aware tokens (`text-fg`, `text-fg-muted`, `text-accent`, `border-line`) so dark sections flip automatically.
+- Forest for grounding surfaces (menu, footer, occasional section); gold only as small accents.
+- Square corners; 2–4px radius only where necessary.
+- Motion from `src/lib/motion.ts` / `src/components/animations`: 500–1000ms, small travel, luxe easing, staggered text, slow image scale. Must respect reduced motion.
+
+## Never
+- Card-heavy grids, rounded cards, drop-shadow-heavy UI, SaaS/dashboard or generic hotel-template layouts.
+- Hardcoded hex colours or new colours outside the palette.
+- Bounce, rotation, flashy effects, neon glow, aggressive parallax, exaggerated hover animations.
+- Ornament, crests, script fonts, heritage "old money" cues.
+- Lorem ipsum or random placeholder UI.
+
+## Accessibility
+- Keep WCAG AA contrast: on ivory use `text-accent` (deep gold) / `text-fg-muted` (deep taupe), never raw `gold`/`taupe` for small text.
+- Text on photography needs an overlay (`overlay="bottom" | "left" | "full" | "soft"`).
