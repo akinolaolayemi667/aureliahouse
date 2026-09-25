@@ -10,6 +10,7 @@ export const motionElements = {
   ul: motion.ul,
   ol: motion.ol,
   li: motion.li,
+  dl: motion.dl,
   p: motion.p,
   span: motion.span,
   h1: motion.h1,

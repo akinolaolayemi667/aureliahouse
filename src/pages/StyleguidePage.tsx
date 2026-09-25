@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { FadeIn, ImageReveal, Reveal, SlowScale, Stagger, StaggerItem, TextReveal } from '@/components/animations';
 import { Badge, Button, Container, Divider, ImageWrapper, Link, Section, SectionHeading } from '@/components/ui';
-import { dining } from '@/data/dining';
+import { signatureRestaurant as restaurant } from '@/data/dining';
 import { experiences } from '@/data/experiences';
 import { rooms } from '@/data/rooms';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -46,8 +46,6 @@ export default function StyleguidePage() {
 
   const [signatureRoom, heroRoom, detailRoom] = rooms;
   const [morningRitual, forestWalk, , , slowAfternoon] = experiences;
-  const [restaurant] = dining;
-
   return (
     <>
       {/* Opening statement — full-bleed hero beneath the transparent masthead */}
@@ -229,8 +227,8 @@ export default function StyleguidePage() {
       {/* Full-bleed cinematic image with soft overlay */}
       <section aria-label="Full-bleed imagery" data-nav-tone="dark">
         <ImageWrapper
-          src={restaurant!.image}
-          alt={restaurant!.name}
+          src={restaurant.image}
+          alt={restaurant.imageAlt}
           ratio="auto"
           overlay="left"
           className="min-h-[85vh]"
@@ -238,13 +236,13 @@ export default function StyleguidePage() {
           <Container size="wide" className="flex h-full min-h-[85vh] flex-col justify-end pb-section-sm">
             <Stagger className="max-w-xl">
               <StaggerItem>
-                <p className="eyebrow mb-6 text-gold-soft">{restaurant!.cuisine}</p>
+                <p className="eyebrow mb-6 text-gold-soft">{restaurant.label}</p>
               </StaggerItem>
               <StaggerItem>
-                <h3 className="text-h1">{restaurant!.name}</h3>
+                <h3 className="text-h1">{restaurant.name}</h3>
               </StaggerItem>
               <StaggerItem>
-                <p className="mt-6 text-body text-fg-muted">{restaurant!.description}</p>
+                <p className="mt-6 text-body text-fg-muted">{restaurant.description}</p>
               </StaggerItem>
               <StaggerItem>
                 <Button to={routes.dining} variant="light" icon={<ArrowRight />} className="mt-10">

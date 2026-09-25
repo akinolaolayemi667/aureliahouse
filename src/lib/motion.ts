@@ -107,6 +107,14 @@ export function slowScale(from = 1.12): Variants {
   };
 }
 
+/** A hairline drawing itself along its length. Set the transform origin on the element. */
+export function lineDraw(axis: 'x' | 'y' = 'x'): Variants {
+  const draw = { duration: duration.reveal, ease: ease.silk };
+  return axis === 'x'
+    ? { hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: draw } }
+    : { hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: draw } };
+}
+
 /** Parent variant that cascades `visible` through its children. */
 export function staggerChildren(interval: number = stagger.base, delayChildren = 0): Variants {
   return {

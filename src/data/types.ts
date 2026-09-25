@@ -53,19 +53,24 @@ export type ExperienceFilter = {
   categories?: readonly ExperienceCategory[];
 };
 
-export type MealPeriod = 'Breakfast' | 'Lunch' | 'Dinner' | 'All day' | 'Evening';
-
-export type DiningExperience = {
+/** A service time shown in the dining details row, e.g. Breakfast · 7:00 — 10:30 */
+export type DiningService = {
   id: string;
-  slug: string;
-  name: string;
-  description: string;
-  image: string;
-  cuisine: string;
+  label: string;
   hours: string;
-  mealPeriods: MealPeriod[];
-  dressCode?: string;
-  featured?: boolean;
+};
+
+export type MenuDish = {
+  name: string;
+  /** Short line of components, e.g. "Seasonal fruit, cultured yogurt" */
+  note?: string;
+};
+
+export type MenuCourse = {
+  id: string;
+  label: string;
+  hours: string;
+  dishes: MenuDish[];
 };
 
 export type Offer = {

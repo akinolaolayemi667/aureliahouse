@@ -35,3 +35,11 @@ export const homeExperiences = {
     'From quiet mornings and private rituals to slow afternoons surrounded by nature, every experience at Aurelia House is designed to make time feel different.',
   experienceCta: 'Discover more',
 };
+
+export const homeDining = {
+  eyebrow: 'At the table',
+  title: 'Food With\na Sense of Place.',
+  titleEmphasis: 'Place.',
+  description:
+    'Seasonal ingredients, thoughtful preparation and spaces made for lingering. Dining at Aurelia House follows the rhythm of the place.',
+};
