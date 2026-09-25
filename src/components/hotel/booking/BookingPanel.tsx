@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { Stepper } from '@/components/ui/Stepper';
+import { getRoomBySlug } from '@/data/rooms';
 import { site } from '@/data/site';
 import type { BookingRequest } from '@/data/types';
 import { cn } from '@/lib/cn';
@@ -44,6 +45,7 @@ export function BookingPanel({ open, onClose, request, onChange, submitted, onSu
   };
   const nights = nightsBetween(request.checkIn, request.checkOut);
   const maxRooms = Math.min(site.booking.maxRooms, request.guests);
+  const room = getRoomBySlug(request.room);
 
   const setCheckIn = (checkIn: string) => {
     if (!checkIn) return;
@@ -81,6 +83,22 @@ export function BookingPanel({ open, onClose, request, onChange, submitted, onSu
         <BookingSummary request={request} nights={nights} onEdit={editDetails} onContinue={onClose} />
       ) : (
         <form onSubmit={handleSubmit} className="mt-4">
+          {room && (
+            <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+              <p className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <span className={labelClasses}>Room</span>
+                <span className="font-display text-h4 text-fg">{room.name}</span>
+                <span className="caps text-label-sm text-fg-muted">{room.category}</span>
+              </p>
+              <button
+                type="button"
+                onClick={() => onChange({ ...request, room: undefined })}
+                className="caps text-label-sm text-fg-muted underline decoration-line-strong underline-offset-4 transition-luxe hover:text-fg"
+              >
+                Any room
+              </button>
+            </div>
+          )}
           <div aria-hidden="true" className="h-px bg-gold" />
           <div className="grid grid-cols-2 md:grid-cols-4">
             <Field index={0}>
@@ -176,7 +194,9 @@ function BookingSummary({ request, nights, onEdit, onContinue }: BookingSummaryP
     headingRef.current?.focus();
   }, []);
 
+  const room = getRoomBySlug(request.room);
   const items = [
+    ...(room ? [{ label: 'Room', value: room.name }] : []),
     { label: 'Arrival', value: formatLongDate(request.checkIn) },
     { label: 'Departure', value: formatLongDate(request.checkOut) },
     { label: 'Party', value: `${plural(request.guests, 'guest')} · ${plural(request.rooms, 'room')}` },
@@ -188,7 +208,7 @@ function BookingSummary({ request, nights, onEdit, onContinue }: BookingSummaryP
         Your stay
       </h3>
       <div aria-hidden="true" className="h-px bg-gold" />
-      <dl className="grid gap-8 py-8 sm:grid-cols-3">
+      <dl className={cn('grid gap-8 py-8', room ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-3')}>
         {items.map((item) => (
           <div key={item.label}>
             <dt className="caps text-label-lg text-fg">{item.label}</dt>
@@ -199,7 +219,8 @@ function BookingSummary({ request, nights, onEdit, onContinue }: BookingSummaryP
       <div aria-hidden="true" className="h-px bg-gold" />
 
       <p className="mt-8 max-w-xl text-body text-fg-muted">
-        {plural(nights, 'night')} at {site.name}. Continue to choose your sanctuary — our reservations team will
+        {plural(nights, 'night')} at {site.name}.{' '}
+        {room ? 'Continue to request the room' : 'Continue to choose your sanctuary'} — our reservations team will
         confirm availability with you personally.
       </p>
 

@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       { path: routes.home, ...page(() => import('@/pages/HomePage'), { headerTheme: 'overlay' }) },
       { path: routes.rooms, ...page(() => import('@/pages/RoomsPage')) },
-      { path: routes.room, ...page(() => import('@/pages/RoomDetailPage')) },
+      { path: routes.room, ...page(() => import('@/pages/RoomDetailPage'), { headerTheme: 'overlay' }) },
       { path: routes.experiences, ...page(() => import('@/pages/ExperiencesPage')) },
       { path: routes.dining, ...page(() => import('@/pages/DiningPage')) },
       { path: routes.spa, ...page(() => import('@/pages/SpaPage')) },

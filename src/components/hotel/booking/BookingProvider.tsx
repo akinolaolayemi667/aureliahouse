@@ -17,7 +17,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 
   const openBooking = useCallback((preset?: Partial<BookingRequest>) => {
     setSubmitted(false);
-    if (preset) setRequest((current) => ({ ...current, ...preset }));
+    /* A room is only kept when this opening asks for it; a generic "Book your stay" means any room */
+    setRequest((current) => ({ ...current, room: undefined, ...preset }));
     setIsOpen(true);
   }, []);
 

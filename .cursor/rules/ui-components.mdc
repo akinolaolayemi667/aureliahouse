@@ -22,7 +22,9 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 | "01 / 06 —— Label" index line | `<IndexLabel index total label>` |
 | Photo that links somewhere (hover zoom + arrow chip, or overlaid caption as children) | `<LinkedImage src alt to ratio>` |
 | Different crop on mobile | `<ImageWrapper position mobilePosition>` (mobile applies below `md`) |
-| Room photography / room caption | `<RoomImage>` + `<RoomDetails>` from `@/components/hotel/rooms` |
+| Room photography / room caption | `<RoomImage>` + `<RoomDetails>` from `@/components/hotel/rooms` (`headingAs="h2"` where rooms are the page's main sections) |
+| "Every stay includes" band | `<StayIncludes>` from `@/components/hotel/rooms/StayIncludes` |
+| Reserve a specific room | `openBooking({ room: slug })` — a bare `openBooking()` always means "any room" |
 | Hairline that draws in on scroll | `<Divider reveal>` (vertical: `orientation="vertical"`) |
 | Muted gold separator (sparingly — one short rule per caption at most) | `<span aria-hidden className="h-px w-10 bg-gold/70" />` |
 | Service hours row / typographic menu page | `<DiningServices>`, `<MenuPreview>` from `@/components/hotel/dining` |

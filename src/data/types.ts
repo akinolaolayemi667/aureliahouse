@@ -1,5 +1,13 @@
 export type RoomCategory = 'Signature Suite' | 'Private Residence' | 'Deluxe Room' | 'Loft Suite';
 
+export type RoomPhoto = {
+  src: string;
+  /** Describes the photograph for screen readers */
+  alt: string;
+  /** CSS object-position for editorial cropping */
+  position?: string;
+};
+
 export type Room = {
   id: string;
   slug: string;
@@ -19,7 +27,10 @@ export type Room = {
   imageAlt: string;
   /** CSS object-position for editorial cropping */
   imagePosition?: string;
-  gallery?: string[];
+  /** Longer room story for the room page, one entry per paragraph */
+  story: string[];
+  /** Two or three further photographs of the room and its surroundings */
+  gallery: RoomPhoto[];
   featured?: boolean;
   amenities: string[];
 };

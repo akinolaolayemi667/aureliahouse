@@ -17,11 +17,21 @@ type RoomDetailsProps = {
   /** The lead room gets a larger name and a bordered call to action */
   featured?: boolean;
   ctaLabel: string;
+  /** Semantic level of the room name — `h2` where rooms are the page's main sections */
+  headingAs?: 'h2' | 'h3';
   className?: string;
 };
 
 /* Editorial room caption: index and category, name, story, facts, rate and link. */
-export function RoomDetails({ room, index, total, featured = false, ctaLabel, className }: RoomDetailsProps) {
+export function RoomDetails({
+  room,
+  index,
+  total,
+  featured = false,
+  ctaLabel,
+  headingAs: Heading = 'h3',
+  className,
+}: RoomDetailsProps) {
   const facts = [room.beds, formatGuests(room.guests), formatSize(room.size)];
 
   return (
@@ -31,7 +41,9 @@ export function RoomDetails({ room, index, total, featured = false, ctaLabel, cl
       </StaggerItem>
 
       <StaggerItem>
-        <h3 className={cn('mt-6 font-display text-fg md:mt-8', featured ? 'text-h2 xl:text-h1' : 'text-h2')}>{room.name}</h3>
+        <Heading className={cn('mt-6 font-display text-fg md:mt-8', featured ? 'text-h2 xl:text-h1' : 'text-h2')}>
+          {room.name}
+        </Heading>
       </StaggerItem>
 
       <StaggerItem>
