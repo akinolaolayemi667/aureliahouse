@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 import { buildSrcSet } from '@/lib/images';
+import type { MaskOrigin } from '@/lib/motion';
+import { ImageReveal } from '@/components/animations/ImageReveal';
 
 export type AspectRatio =
   | 'square'
@@ -27,11 +29,13 @@ const ratios: Record<AspectRatio, string> = {
   auto: '',
 };
 
+/** Soft overlays keep text legible on photography without flattening it */
 const overlays = {
   none: '',
   bottom: 'scrim-bottom',
+  left: 'scrim-left',
   full: 'scrim-full',
-  soft: 'bg-ink/20',
+  soft: 'scrim-soft',
 } as const;
 
 export type ImageOverlay = keyof typeof overlays;
@@ -46,13 +50,15 @@ type ImageWrapperProps = {
   /** Load eagerly with high fetch priority — use for above-the-fold imagery */
   priority?: boolean;
   overlay?: ImageOverlay;
-  /** Slow, subtle zoom when the wrapper (or a parent `group`) is hovered */
+  /** Slow, barely-there zoom when the wrapper (or a parent `group`) is hovered */
   zoomOnHover?: boolean;
-  /** CSS object-position, e.g. "center 30%" */
+  /** Mask-reveal the frame as it scrolls into view, from the given edge */
+  reveal?: MaskOrigin | boolean;
+  /** CSS object-position for editorial cropping, e.g. "center 30%" */
   position?: string;
   className?: string;
   imageClassName?: string;
-  /** Content layered above the image and overlay (captions, badges …) */
+  /** Content layered above the image and overlay (captions, badges …); inherits the dark tone */
   children?: ReactNode;
 };
 
@@ -64,6 +70,7 @@ export function ImageWrapper({
   priority = false,
   overlay = 'none',
   zoomOnHover = false,
+  reveal = false,
   position,
   className,
   imageClassName,
@@ -76,8 +83,9 @@ export function ImageWrapper({
     setLoaded(Boolean(imageRef.current?.complete && imageRef.current.naturalWidth));
   }, [src]);
 
-  return (
-    <div className={cn('group relative isolate overflow-hidden bg-sand', ratios[ratio], className)}>
+  const frame = (
+    <>
+      <div aria-hidden="true" className="absolute inset-0 bg-sand" />
       <img
         ref={imageRef}
         src={src}
@@ -90,16 +98,32 @@ export function ImageWrapper({
         onLoad={() => setLoaded(true)}
         style={position ? { objectPosition: position } : undefined}
         className={cn(
-          'absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1200ms] ease-luxe',
+          'absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1400ms] ease-out',
           loaded ? 'opacity-100' : 'opacity-0',
-          zoomOnHover && 'group-hover:scale-[1.04]',
+          zoomOnHover && 'group-hover:scale-[1.035]',
           imageClassName,
         )}
       />
       {overlay !== 'none' && (
         <div aria-hidden="true" className={cn('pointer-events-none absolute inset-0', overlays[overlay])} />
       )}
-      {children && <div className="relative z-10 h-full">{children}</div>}
-    </div>
+      {children && (
+        <div data-tone="dark" className="relative z-10 h-full text-fg">
+          {children}
+        </div>
+      )}
+    </>
   );
+
+  const wrapperClasses = cn('group relative isolate overflow-hidden', ratios[ratio], className);
+
+  if (reveal) {
+    return (
+      <ImageReveal from={reveal === true ? 'bottom' : reveal} className={wrapperClasses}>
+        {frame}
+      </ImageReveal>
+    );
+  }
+
+  return <div className={wrapperClasses}>{frame}</div>;
 }

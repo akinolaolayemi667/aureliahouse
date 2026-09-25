@@ -1,123 +1,110 @@
 /*
- * Aurelia House design tokens.
- * Every token here generates Tailwind utilities (e.g. --color-bronze-500 -> bg-bronze-500).
+ * Aurelia House — visual language tokens.
+ * Every token generates Tailwind utilities (e.g. --color-forest -> bg-forest, --text-h2 -> text-h2).
  */
 
 @theme {
-  /* ---------- Colour ---------- */
+  /* ---------- Palette ---------- */
   --color-*: initial;
 
   --color-white: #ffffff;
-  --color-black: #000000;
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  /* Warm neutrals — paper, linen, stone */
-  --color-ivory: #f7f3ec;
-  --color-linen: #efe8dc;
-  --color-sand: #e3d8c6;
-  --color-stone: #cbbfac;
-  --color-taupe: #9c8f7d;
+  --color-ivory: #f5f1e8;
+  --color-ivory-soft: #fbf9f4;
 
-  /* Deep tones — text and dark surfaces */
-  --color-umber: #4a4038;
-  --color-espresso: #2a241f;
-  --color-ink: #1e1a16;
+  --color-charcoal: #1b1b18;
+  --color-charcoal-deep: #121310;
 
-  /* Muted body copy */
-  --color-muted: #6f655b;
-  --color-muted-light: #b3a898;
+  --color-forest: #17352b;
+  --color-forest-deep: #10271f;
 
-  /* Accent — aged bronze */
-  --color-bronze-100: #f1e8da;
-  --color-bronze-200: #e2d0b4;
-  --color-bronze-300: #d1b78f;
-  --color-bronze-400: #c2a476;
-  --color-bronze-500: #a8875a;
-  --color-bronze-600: #8a6d45;
-  --color-bronze-700: #6c5536;
+  --color-gold: #c6a96b;
+  --color-gold-soft: #dcc99a;
 
-  /* Secondary accent — garden olive */
-  --color-olive: #6b6a4f;
+  --color-taupe: #8a8276;
+  --color-sand: #ddd6c8;
 
-  /* Hairlines */
-  --color-line: rgb(30 26 22 / 0.12);
-  --color-line-strong: rgb(30 26 22 / 0.24);
-  --color-line-light: rgb(247 243 236 / 0.2);
+  /* Derived for WCAG AA text contrast on ivory — palette hues, deepened */
+  --color-gold-deep: #7d6334;
+  --color-taupe-deep: #625b51;
 
-  /* Feedback */
-  --color-success: #4f6b52;
-  --color-error: #9b4a3c;
+  --color-error: #8c3b2e;
 
   /* ---------- Typography ---------- */
-  --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-sans: 'Manrope Variable', 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  /* Fluid editorial scale (min @ 360px -> max @ 1440px) */
-  --text-display-2xl: clamp(3.5rem, 2.1rem + 6.2vw, 7.5rem);
-  --text-display-2xl--line-height: 0.95;
-  --text-display-2xl--letter-spacing: -0.02em;
+  /* Editorial hierarchy */
+  --text-display: clamp(3.5rem, 8vw, 8rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.025em;
+  --text-display--font-weight: 300;
 
-  --text-display-xl: clamp(2.75rem, 1.8rem + 4.2vw, 5.5rem);
-  --text-display-xl--line-height: 1;
-  --text-display-xl--letter-spacing: -0.015em;
+  --text-h1: clamp(3rem, 6vw, 6rem);
+  --text-h1--line-height: 0.98;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 300;
 
-  --text-display-lg: clamp(2.25rem, 1.6rem + 2.9vw, 4.25rem);
-  --text-display-lg--line-height: 1.05;
-  --text-display-lg--letter-spacing: -0.01em;
+  --text-h2: clamp(2.5rem, 4vw, 4.5rem);
+  --text-h2--line-height: 1.04;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h2--font-weight: 400;
 
-  --text-display-md: clamp(1.875rem, 1.45rem + 1.9vw, 3.25rem);
-  --text-display-md--line-height: 1.1;
-  --text-display-md--letter-spacing: -0.005em;
+  --text-h3: clamp(1.5rem, 2.5vw, 2.5rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.005em;
+  --text-h3--font-weight: 400;
 
-  --text-display-sm: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
-  --text-display-sm--line-height: 1.15;
+  --text-h4: clamp(1.25rem, 1.5vw, 1.5rem);
+  --text-h4--line-height: 1.3;
+  --text-h4--font-weight: 500;
 
-  --text-title: clamp(1.25rem, 1.12rem + 0.55vw, 1.625rem);
-  --text-title--line-height: 1.25;
+  --text-lead: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
+  --text-lead--line-height: 1.65;
 
-  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
-  --text-lead--line-height: 1.7;
-
-  --text-body: 1rem;
+  --text-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   --text-body--line-height: 1.75;
 
   --text-small: 0.875rem;
-  --text-small--line-height: 1.6;
+  --text-small--line-height: 1.65;
 
-  --text-eyebrow: 0.6875rem;
-  --text-eyebrow--line-height: 1.4;
-  --text-eyebrow--letter-spacing: 0.28em;
+  /* Uppercase labels & navigation metadata (11–13px) */
+  --text-label-lg: 0.8125rem;
+  --text-label-lg--line-height: 1.4;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label-sm: 0.6875rem;
+  --text-label-sm--line-height: 1.4;
 
-  --tracking-luxe: 0.28em;
-  --tracking-wide-xl: 0.18em;
+  --tracking-caps: 0.2em;
+  --tracking-caps-wide: 0.28em;
 
   /* ---------- Layout ---------- */
-  --container-reading: 42rem;
+  --container-reading: 40rem;
   --container-narrow: 56rem;
-  --container-content: 80rem;
-  --container-wide: 100rem;
+  --container-content: 82rem;
+  --container-wide: 104rem;
 
   --breakpoint-3xl: 112rem;
 
   /* Fluid spacing — the base 4px scale remains available (p-4, gap-6 …) */
-  --spacing-gutter: clamp(1.25rem, 0.6rem + 3.2vw, 3.5rem);
-  --spacing-section-sm: clamp(3.5rem, 2.6rem + 4vw, 6rem);
-  --spacing-section: clamp(5rem, 3.4rem + 7vw, 9.5rem);
-  --spacing-section-lg: clamp(6.5rem, 4rem + 11vw, 13rem);
-  --spacing-header: 5rem;
+  --spacing-gutter: clamp(1.25rem, 0.5rem + 4vw, 5rem);
+  --spacing-grid-gap: clamp(1rem, 0.6rem + 1.6vw, 2.5rem);
+  --spacing-section-sm: clamp(4rem, 3rem + 4vw, 7rem);
+  --spacing-section: clamp(6rem, 4rem + 8vw, 11rem);
+  --spacing-section-lg: clamp(7.5rem, 4.5rem + 12vw, 15rem);
+  --spacing-header: 5.5rem;
 
-  /* ---------- Radius — restrained, architectural ---------- */
+  /* ---------- Radius — square by default ---------- */
   --radius-*: initial;
   --radius-none: 0;
   --radius-xs: 2px;
   --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 14px;
-  --radius-xl: 24px;
   --radius-full: 9999px;
 
-  /* ---------- Aspect ratios ---------- */
+  /* ---------- Aspect ratios — editorial crops ---------- */
   --aspect-square: 1 / 1;
   --aspect-portrait: 3 / 4;
   --aspect-editorial: 4 / 5;
@@ -128,45 +115,39 @@
   --aspect-cinema: 21 / 9;
   --aspect-panorama: 3 / 1;
 
-  /* ---------- Shadow — soft, diffused ---------- */
-  --shadow-soft: 0 1px 2px rgb(30 26 22 / 0.04), 0 8px 24px -12px rgb(30 26 22 / 0.12);
-  --shadow-lift: 0 2px 4px rgb(30 26 22 / 0.04), 0 24px 48px -24px rgb(30 26 22 / 0.28);
-  --shadow-float: 0 40px 80px -32px rgb(30 26 22 / 0.35);
+  /* ---------- Shadow — used sparingly ---------- */
+  --shadow-soft: 0 1px 2px rgb(18 19 16 / 0.04), 0 12px 32px -16px rgb(18 19 16 / 0.14);
+  --shadow-float: 0 40px 80px -32px rgb(18 19 16 / 0.4);
 
   /* ---------- Motion ---------- */
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --default-transition-duration: 400ms;
+  --default-transition-duration: 500ms;
   --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-  --animate-fade-in: fade-in 900ms var(--ease-luxe) both;
-  --animate-slow-zoom: slow-zoom 18s var(--ease-soft) both;
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes slow-zoom {
-    from {
-      transform: scale(1.08);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
+/*
+ * Tone-aware semantic colours. Values resolve per element, so anything inside
+ * [data-tone='dark'] (charcoal/forest surfaces, overlay header, imagery)
+ * flips automatically: text-fg, text-fg-muted, border-line, text-accent …
+ */
+@theme inline {
+  --color-canvas: var(--tone-canvas);
+  --color-fg: var(--tone-fg);
+  --color-fg-muted: var(--tone-fg-muted);
+  --color-fg-subtle: var(--tone-fg-subtle);
+  --color-line: var(--tone-line);
+  --color-line-strong: var(--tone-line-strong);
+  --color-accent: var(--tone-accent);
 }
 
 /* Motion durations shared by CSS utilities (mirrors src/lib/motion.ts) */
 :root {
-  --duration-fast: 200ms;
-  --duration-base: 400ms;
-  --duration-slow: 700ms;
-  --duration-slower: 1100ms;
+  --duration-fast: 300ms;
+  --duration-base: 500ms;
+  --duration-slow: 800ms;
+  --duration-image: 1200ms;
+  --scrim: 18 19 16;
 }

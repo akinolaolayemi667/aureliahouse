@@ -18,7 +18,7 @@ export function PageHeader({ eyebrow, title, description, action, align = 'cente
       <Container>
         <SectionHeading
           as="h1"
-          size="xl"
+          size="h1"
           align={align}
           eyebrow={eyebrow}
           title={title}

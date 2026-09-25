@@ -24,7 +24,7 @@ export default function RouteErrorPage() {
         <Container>
           <SectionHeading
             as="h1"
-            size="lg"
+            size="h2"
             align="center"
             animate={false}
             eyebrow="Something went wrong"

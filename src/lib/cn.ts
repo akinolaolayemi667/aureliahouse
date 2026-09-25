@@ -2,27 +2,28 @@ import { clsx, type ClassValue } from 'clsx';
 import { extendTailwindMerge } from 'tailwind-merge';
 
 /* Custom theme tokens must be registered so tailwind-merge does not mistake
-   e.g. `text-display-lg` (font size) for a text colour and drop it. */
+   e.g. `text-h2` (font size) for a text colour and drop it. */
 const twMerge = extendTailwindMerge({
   extend: {
     classGroups: {
       'font-size': [
         {
           text: [
-            'display-2xl',
-            'display-xl',
-            'display-lg',
-            'display-md',
-            'display-sm',
-            'title',
+            'display',
+            'h1',
+            'h2',
+            'h3',
+            'h4',
             'lead',
             'body',
             'small',
-            'eyebrow',
+            'label-lg',
+            'label',
+            'label-sm',
           ],
         },
       ],
-      shadow: [{ shadow: ['soft', 'lift', 'float'] }],
+      shadow: [{ shadow: ['soft', 'float'] }],
       aspect: [
         {
           aspect: [

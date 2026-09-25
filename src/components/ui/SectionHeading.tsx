@@ -1,28 +1,29 @@
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/cn';
-import { Reveal } from '@/components/animations/Reveal';
+import { Stagger, StaggerItem } from '@/components/animations/Stagger';
 
-export type SectionHeadingSize = 'sm' | 'md' | 'lg' | 'xl';
-
-const titleSizes: Record<SectionHeadingSize, string> = {
-  sm: 'text-display-sm',
-  md: 'text-display-md',
-  lg: 'text-display-lg',
-  xl: 'text-display-xl',
-};
+/** Visual scale, independent of the semantic heading level */
+export type SectionHeadingSize = 'display' | 'h1' | 'h2' | 'h3';
 
 type SectionHeadingProps = {
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
-  /** Optional trailing slot — e.g. a “View all” link */
+  /** Optional trailing slot — e.g. a “Discover more” link */
   action?: ReactNode;
   as?: 'h1' | 'h2' | 'h3';
   size?: SectionHeadingSize;
   align?: 'left' | 'center';
-  /** Animate into view */
+  /** Stagger the eyebrow, title and description into view */
   animate?: boolean;
   className?: string;
+};
+
+const titleSizes: Record<SectionHeadingSize, string> = {
+  display: 'text-display',
+  h1: 'text-h1',
+  h2: 'text-h2',
+  h3: 'text-h3',
 };
 
 export function SectionHeading({
@@ -31,59 +32,43 @@ export function SectionHeading({
   description,
   action,
   as: Heading = 'h2',
-  size = 'md',
+  size = 'h2',
   align = 'left',
   animate = true,
   className,
 }: SectionHeadingProps) {
   const centered = align === 'center';
-
-  const content = (
-    <div
-      className={cn(
-        'flex flex-col gap-6',
-        centered ? 'mx-auto max-w-narrow items-center text-center' : 'max-w-narrow items-start',
-      )}
-    >
-      {eyebrow && (
-        <p
-          className={cn(
-            'eyebrow flex items-center gap-4 text-bronze-600 in-data-[tone=dark]:text-bronze-300',
-            'before:h-px before:w-8 before:bg-current before:opacity-60',
-            centered && 'after:h-px after:w-8 after:bg-current after:opacity-60',
-          )}
-        >
-          {eyebrow}
-        </p>
-      )}
-      <Heading className={cn(titleSizes[size], 'font-display text-current')}>{title}</Heading>
-      {description && (
-        <div className="max-w-reading text-lead text-muted in-data-[tone=dark]:text-ivory/70">
-          {description}
-        </div>
-      )}
-    </div>
-  );
-
-  const body = action ? (
-    <div
-      className={cn(
-        'flex flex-col gap-8',
-        centered ? 'items-center' : 'md:flex-row md:items-end md:justify-between',
-      )}
-    >
-      {content}
-      <div className="shrink-0">{action}</div>
-    </div>
-  ) : (
-    content
-  );
-
-  if (!animate) return <header className={className}>{body}</header>;
+  const Wrapper = animate ? Stagger : 'div';
+  const Item = animate ? StaggerItem : 'div';
 
   return (
-    <Reveal as="header" className={className}>
-      {body}
-    </Reveal>
+    <Wrapper
+      className={cn(
+        'flex flex-col gap-10',
+        centered ? 'items-center text-center' : action && 'md:flex-row md:items-end md:justify-between',
+        className,
+      )}
+    >
+      <div className={cn('flex flex-col', centered ? 'max-w-narrow items-center' : 'max-w-narrow items-start')}>
+        {eyebrow && (
+          <Item>
+            <p className="eyebrow mb-7 text-accent">{eyebrow}</p>
+          </Item>
+        )}
+        <Item>
+          <Heading className={cn(titleSizes[size], 'font-display text-fg')}>{title}</Heading>
+        </Item>
+        {description && (
+          <Item>
+            <div className="mt-8 max-w-reading text-body text-fg-muted">{description}</div>
+          </Item>
+        )}
+      </div>
+      {action && (
+        <Item className="shrink-0">
+          {action}
+        </Item>
+      )}
+    </Wrapper>
   );
 }

@@ -1,18 +1,7 @@
 import type { ReactNode } from 'react';
-import { motion, useReducedMotion, type TargetAndTransition } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/cn';
-import { duration as durations, ease, viewportOnce } from '@/lib/motion';
-
-type MaskOrigin = 'bottom' | 'top' | 'left' | 'right';
-
-const hiddenMask: Record<MaskOrigin, string> = {
-  bottom: 'inset(100% 0% 0% 0%)',
-  top: 'inset(0% 0% 100% 0%)',
-  left: 'inset(0% 100% 0% 0%)',
-  right: 'inset(0% 0% 0% 100%)',
-};
-
-const visibleMask = 'inset(0% 0% 0% 0%)';
+import { fadeIn, imageReveal, slowScale, viewportOnce, withDelay, type MaskOrigin } from '@/lib/motion';
 
 export type ImageRevealProps = {
   children: ReactNode;
@@ -21,9 +10,7 @@ export type ImageRevealProps = {
   from?: MaskOrigin;
   /** Seconds */
   delay?: number;
-  /** Seconds */
-  duration?: number;
-  /** Starting scale of the inner content, settling to 1 */
+  /** Starting scale of the image, settling to 1 */
   scale?: number;
   /** Reveal on mount instead of when scrolled into view */
   immediate?: boolean;
@@ -35,43 +22,27 @@ export function ImageReveal({
   className,
   from = 'bottom',
   delay = 0,
-  duration = durations.cinematic,
-  scale = 1.14,
+  scale = 1.12,
   immediate = false,
 }: ImageRevealProps) {
   const reduceMotion = useReducedMotion();
+  const trigger = immediate ? { animate: 'visible' } : { whileInView: 'visible', viewport: viewportOnce };
 
-  const reveal = (target: TargetAndTransition) =>
-    immediate ? { animate: target } : { whileInView: target, viewport: viewportOnce };
-
-  if (reduceMotion) {
-    return (
-      <motion.div
-        className={cn('relative overflow-hidden', className)}
-        initial={{ opacity: 0 }}
-        {...reveal({ opacity: 1 })}
-        transition={{ duration: durations.slow, delay, ease: ease.soft }}
-      >
-        {children}
-      </motion.div>
-    );
-  }
-
+  /* The observed element must stay unclipped: IntersectionObserver treats a
+     zero-area clip-path as out of view, so the mask lives on an inner layer. */
   return (
-    <motion.div
-      className={cn('relative overflow-hidden', className)}
-      initial={{ clipPath: hiddenMask[from] }}
-      {...reveal({ clipPath: visibleMask })}
-      transition={{ duration, delay, ease: ease.silk }}
-    >
-      <motion.div
-        className="h-full w-full"
-        initial={{ scale }}
-        {...reveal({ scale: 1 })}
-        transition={{ duration: duration * 1.25, delay, ease: ease.luxe }}
-      >
-        {children}
-      </motion.div>
+    <motion.div className={cn('relative overflow-hidden', className)} initial="hidden" {...trigger}>
+      {reduceMotion ? (
+        <motion.div className="relative h-full w-full" variants={withDelay(fadeIn, delay)}>
+          {children}
+        </motion.div>
+      ) : (
+        <motion.div className="relative h-full w-full" variants={withDelay(imageReveal(from), delay)}>
+          <motion.div className="relative h-full w-full" variants={withDelay(slowScale(scale), delay)}>
+            {children}
+          </motion.div>
+        </motion.div>
+      )}
     </motion.div>
   );
 }

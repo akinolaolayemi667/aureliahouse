@@ -47,7 +47,7 @@ export function RootLayout() {
           key={pathname}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: duration.slow, ease: ease.soft }}
+          transition={{ duration: duration.fast, ease: ease.out }}
         >
           <Outlet />
         </motion.div>

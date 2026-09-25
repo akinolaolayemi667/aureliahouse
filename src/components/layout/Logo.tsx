@@ -24,10 +24,10 @@ export function Logo({ size = 'md', className, onClick }: LogoProps) {
       aria-label={`${site.name} — home`}
       className={cn('inline-flex flex-col items-center leading-none text-current', className)}
     >
-      <span className={cn('font-display font-normal uppercase tracking-[0.22em]', sizes[size].word)}>
+      <span className={cn('-mr-[0.22em] font-display font-normal uppercase tracking-[0.22em]', sizes[size].word)}>
         Aurelia
       </span>
-      <span className={cn('mt-1.5 font-sans font-medium uppercase tracking-[0.6em] opacity-70', sizes[size].sub)}>
+      <span className={cn('-mr-[0.6em] mt-1.5 font-sans font-medium uppercase tracking-[0.6em] opacity-70', sizes[size].sub)}>
         House
       </span>
     </RouterLink>

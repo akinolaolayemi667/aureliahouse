@@ -2,15 +2,14 @@ import type { ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 import { BaseAction, type ActionProps } from './BaseAction';
 
-export type IconButtonVariant = 'ghost' | 'outline' | 'solid' | 'light' | 'glass';
+export type IconButtonVariant = 'ghost' | 'outline' | 'solid' | 'glass';
 export type IconButtonSize = 'sm' | 'md' | 'lg';
 
 const variants: Record<IconButtonVariant, string> = {
-  ghost: 'text-current hover:bg-current/8',
-  outline: 'border border-line-strong text-ink hover:border-ink hover:bg-ink hover:text-ivory',
-  solid: 'bg-ink text-ivory hover:bg-espresso',
-  light: 'bg-ivory text-ink hover:bg-white shadow-soft',
-  glass: 'border border-ivory/25 bg-ivory/10 text-ivory backdrop-blur-md hover:bg-ivory/20',
+  ghost: 'text-fg hover:text-fg-muted',
+  outline: 'border border-line-strong text-fg hover:border-fg',
+  solid: 'bg-charcoal text-white hover:bg-charcoal-deep',
+  glass: 'border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20',
 };
 
 const sizes: Record<IconButtonSize, string> = {
@@ -44,7 +43,7 @@ export function IconButton({
       aria-label={label}
       title={label}
       className={cn(
-        'inline-flex shrink-0 items-center justify-center rounded-full transition-luxe [&_svg]:stroke-[1.5] disabled:pointer-events-none disabled:opacity-40',
+        'inline-flex shrink-0 items-center justify-center rounded-full transition-luxe [&_svg]:stroke-[1.25] disabled:pointer-events-none disabled:opacity-40',
         variants[variant],
         sizes[size],
         className,

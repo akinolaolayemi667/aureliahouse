@@ -11,25 +11,28 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer data-tone="dark" className="bg-ink text-ivory">
+    <footer data-tone="dark" className="bg-forest-deep text-fg">
       <Container size="wide" className="pt-section-sm pb-10">
-        <div className="grid gap-16 lg:grid-cols-12 lg:gap-10">
-          <div className="flex flex-col items-start gap-8 lg:col-span-4">
+        <div className="grid-editorial gap-y-16">
+          <div className="col-span-4 flex flex-col items-start gap-8 md:col-span-12 lg:col-span-4">
             <Logo size="md" className="items-start" />
-            <p className="max-w-xs text-small text-ivory/60">{site.description}</p>
-            <Button to={bookingPath()} variant="outline-light" size="sm">
-              Reserve your stay
+            <p className="max-w-xs text-small text-fg-muted">{site.description}</p>
+            <Button to={bookingPath()} variant="secondary" size="sm">
+              Book your stay
             </Button>
           </div>
 
-          <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-5">
+          <nav
+            aria-label="Footer"
+            className="col-span-4 grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-8 lg:col-span-5 lg:col-start-6"
+          >
             {footerNav.map((group) => (
               <div key={group.title}>
-                <h2 className="eyebrow mb-6 font-sans text-bronze-300">{group.title}</h2>
+                <h2 className="eyebrow mb-6 text-accent">{group.title}</h2>
                 <ul className="flex flex-col gap-3">
                   {group.items.map((item) => (
                     <li key={item.to}>
-                      <Link to={item.to} className="text-small text-ivory/75 hover:text-ivory">
+                      <Link to={item.to} className="text-small text-fg-muted hover:text-fg">
                         {item.label}
                       </Link>
                     </li>
@@ -39,16 +42,16 @@ export function Footer() {
             ))}
           </nav>
 
-          <div className="lg:col-span-3">
-            <h2 className="eyebrow mb-6 font-sans text-bronze-300">Visit</h2>
-            <address className="flex flex-col gap-1 text-small not-italic text-ivory/75">
+          <div className="col-span-4 lg:col-span-2 lg:col-start-11">
+            <h2 className="eyebrow mb-6 text-accent">Visit</h2>
+            <address className="flex flex-col gap-1 text-small not-italic text-fg-muted">
               <span>{site.address.line1}</span>
               <span>{site.address.line2}</span>
               <span>{site.address.country}</span>
-              <Link href={site.contact.phoneHref} className="mt-4 w-fit hover:text-ivory">
+              <Link href={site.contact.phoneHref} className="mt-4 w-fit hover:text-fg">
                 {site.contact.phone}
               </Link>
-              <Link href={`mailto:${site.contact.email}`} className="w-fit hover:text-ivory">
+              <Link href={`mailto:${site.contact.email}`} className="w-fit hover:text-fg">
                 {site.contact.email}
               </Link>
             </address>
@@ -57,14 +60,14 @@ export function Footer() {
 
         <Divider className="mt-20 mb-8" />
 
-        <div className="flex flex-col-reverse gap-6 text-[0.75rem] text-ivory/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="caps flex flex-col-reverse gap-6 text-label-sm text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.name}. All rights reserved.
+            © {year} {site.name}
           </p>
-          <ul className="flex gap-6">
+          <ul className="flex gap-8">
             {socialLinks.map((social) => (
               <li key={social.label}>
-                <Link href={social.href} className="hover:text-ivory">
+                <Link href={social.href} className="hover:text-fg">
                   {social.label}
                 </Link>
               </li>

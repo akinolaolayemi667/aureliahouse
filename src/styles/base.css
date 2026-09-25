@@ -1,4 +1,25 @@
 @layer base {
+  :root,
+  [data-tone='light'] {
+    --tone-canvas: var(--color-ivory);
+    --tone-fg: var(--color-charcoal);
+    --tone-fg-muted: var(--color-taupe-deep);
+    --tone-fg-subtle: var(--color-taupe);
+    --tone-line: var(--color-sand);
+    --tone-line-strong: color-mix(in srgb, var(--color-charcoal) 32%, transparent);
+    --tone-accent: var(--color-gold-deep);
+  }
+
+  [data-tone='dark'] {
+    --tone-canvas: var(--color-charcoal);
+    --tone-fg: var(--color-ivory-soft);
+    --tone-fg-muted: color-mix(in srgb, var(--color-ivory-soft) 72%, transparent);
+    --tone-fg-subtle: color-mix(in srgb, var(--color-ivory-soft) 50%, transparent);
+    --tone-line: color-mix(in srgb, var(--color-ivory-soft) 16%, transparent);
+    --tone-line-strong: color-mix(in srgb, var(--color-ivory-soft) 40%, transparent);
+    --tone-accent: var(--color-gold);
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -6,6 +27,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     scroll-padding-top: var(--spacing-header);
+    background-color: var(--color-ivory);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -18,11 +40,11 @@
     min-height: 100dvh;
     padding-right: var(--scrollbar-compensation, 0px);
     background-color: var(--color-ivory);
-    color: var(--color-ink);
+    color: var(--color-charcoal);
     font-family: var(--font-sans);
     font-size: var(--text-body);
     line-height: var(--text-body--line-height);
-    font-feature-settings: 'kern', 'liga';
+    font-feature-settings: 'kern', 'liga', 'cv11';
   }
 
   h1,
@@ -50,9 +72,13 @@
     height: auto;
   }
 
+  hr {
+    border-color: var(--color-line);
+  }
+
   ::selection {
-    background-color: var(--color-bronze-200);
-    color: var(--color-ink);
+    background-color: var(--color-gold-soft);
+    color: var(--color-charcoal);
   }
 
   /* Accessible focus — visible for keyboard users only */
@@ -61,14 +87,8 @@
   }
 
   :focus-visible {
-    outline: 1.5px solid var(--color-bronze-500);
+    outline: 1px solid var(--color-accent);
     outline-offset: 4px;
-    border-radius: var(--radius-xs);
-  }
-
-  [data-tone='dark'] :focus-visible,
-  .tone-dark :focus-visible {
-    outline-color: var(--color-bronze-300);
   }
 
   button,

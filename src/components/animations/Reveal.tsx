@@ -1,60 +1,43 @@
-import { motion, useReducedMotion, type HTMLMotionProps } from 'framer-motion';
-import { duration as durations, ease, offsetFor, viewportOnce, type RevealDirection } from '@/lib/motion';
+import { motion, type HTMLMotionProps } from 'framer-motion';
+import { fadeUp, slideIn, viewportOnce, withDelay, type Direction } from '@/lib/motion';
+import { motionElements, type MotionElement } from './elements';
 
-const elements = {
-  div: motion.div,
-  section: motion.section,
-  article: motion.article,
-  header: motion.header,
-  li: motion.li,
-  p: motion.p,
-  span: motion.span,
-  h1: motion.h1,
-  h2: motion.h2,
-  h3: motion.h3,
-  figure: motion.figure,
-} as const;
-
-export type RevealProps = Omit<HTMLMotionProps<'div'>, 'initial' | 'animate' | 'whileInView'> & {
-  as?: keyof typeof elements;
-  direction?: RevealDirection;
-  /** Travel distance in pixels */
+export type RevealProps = Omit<HTMLMotionProps<'div'>, 'initial' | 'animate' | 'whileInView' | 'variants'> & {
+  as?: MotionElement;
+  /** `up` is the standard fade-up; other directions slide in from the side */
+  direction?: Direction;
+  /** Travel distance in pixels (sideways directions) */
   distance?: number;
   /** Seconds */
   delay?: number;
-  /** Seconds */
-  duration?: number;
+  /** Reveal on mount instead of when scrolled into view */
+  immediate?: boolean;
   /** Animate every time the element enters the viewport */
   repeat?: boolean;
   /** Fraction of the element that must be visible before revealing */
   amount?: number;
 };
 
-/* Fades and gently translates content into place as it enters the viewport. */
+/* Fades content up (or in from a side) as it enters the viewport. */
 export function Reveal({
   as = 'div',
   direction = 'up',
-  distance = 28,
+  distance,
   delay = 0,
-  duration = durations.slower,
+  immediate = false,
   repeat = false,
   amount = viewportOnce.amount,
-  transition,
   children,
   ...props
 }: RevealProps) {
-  const reduceMotion = useReducedMotion();
-  const Component = elements[as] as typeof motion.div;
-  const offset = reduceMotion ? { x: 0, y: 0 } : offsetFor(direction, distance);
+  const Component = motionElements[as] as typeof motion.div;
+  const variants = withDelay(direction === 'up' && !distance ? fadeUp : slideIn(direction, distance), delay);
+  const trigger = immediate
+    ? { animate: 'visible' }
+    : { whileInView: 'visible', viewport: { ...viewportOnce, once: !repeat, amount } };
 
   return (
-    <Component
-      initial={{ opacity: 0, ...offset }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ ...viewportOnce, once: !repeat, amount }}
-      transition={{ duration, delay, ease: ease.luxe, ...transition }}
-      {...props}
-    >
+    <Component initial="hidden" {...trigger} variants={variants} {...props}>
       {children}
     </Component>
   );

@@ -10,6 +10,13 @@ import { IconButton } from './IconButton';
 
 export type ModalSize = 'sm' | 'md' | 'lg' | 'xl';
 export type ModalVariant = 'dialog' | 'fullscreen' | 'drawer';
+export type ModalTone = 'light' | 'charcoal' | 'forest';
+
+const surfaces: Record<ModalTone, { className: string; tone: 'light' | 'dark' }> = {
+  light: { className: 'bg-ivory-soft', tone: 'light' },
+  charcoal: { className: 'bg-charcoal', tone: 'dark' },
+  forest: { className: 'bg-forest-deep', tone: 'dark' },
+};
 
 const dialogSizes: Record<ModalSize, string> = {
   sm: 'max-w-md',
@@ -47,8 +54,8 @@ type ModalProps = {
   description?: string;
   variant?: ModalVariant;
   size?: ModalSize;
-  /** Dark surface — used for the fullscreen navigation overlay */
-  tone?: 'light' | 'dark';
+  /** Surface colour — dark tones are used for the fullscreen navigation overlay */
+  tone?: ModalTone;
   closeLabel?: string;
   className?: string;
   children: ReactNode;
@@ -84,7 +91,7 @@ export function Modal({
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open, onClose]);
 
-  const dark = tone === 'dark';
+  const surface = surfaces[tone];
   const fullscreen = variant === 'fullscreen';
 
   return createPortal(
@@ -99,11 +106,11 @@ export function Modal({
         >
           <motion.div
             aria-hidden="true"
-            className="absolute inset-0 bg-ink/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-charcoal-deep/55 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: duration.base, ease: ease.soft }}
+            transition={{ duration: duration.fast, ease: ease.out }}
             onClick={onClose}
           />
 
@@ -114,14 +121,13 @@ export function Modal({
             aria-labelledby={titleId}
             aria-describedby={description ? descriptionId : undefined}
             tabIndex={-1}
-            data-tone={dark ? 'dark' : 'light'}
+            data-tone={surface.tone}
             {...panelMotion[variant]}
             transition={{ duration: variant === 'drawer' ? duration.slow : duration.base, ease: ease.luxe }}
             className={cn(
-              'relative flex w-full flex-col overflow-y-auto overscroll-contain outline-none',
-              dark ? 'bg-ink text-ivory' : 'bg-ivory text-ink',
-              variant === 'dialog' &&
-                cn('max-h-[92dvh] rounded-t-lg shadow-float sm:rounded-lg', dialogSizes[size]),
+              'relative flex w-full flex-col overflow-y-auto overscroll-contain text-fg outline-none',
+              surface.className,
+              variant === 'dialog' && cn('max-h-[92dvh] shadow-float', dialogSizes[size]),
               variant === 'fullscreen' && 'h-dvh',
               variant === 'drawer' && 'h-dvh max-w-lg shadow-float',
               className,
@@ -134,11 +140,11 @@ export function Modal({
               )}
             >
               <div className={cn(hideTitle && 'sr-only')}>
-                <h2 id={titleId} className="text-display-sm">
+                <h2 id={titleId} className="text-h3">
                   {title}
                 </h2>
                 {description && (
-                  <p id={descriptionId} className="mt-2 text-small text-muted in-data-[tone=dark]:text-ivory/60">
+                  <p id={descriptionId} className="mt-2 text-small text-fg-muted">
                     {description}
                   </p>
                 )}

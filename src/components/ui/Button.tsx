@@ -2,31 +2,32 @@ import type { ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 import { BaseAction, type ActionProps } from './BaseAction';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'light' | 'outline-light' | 'ghost' | 'bronze';
+/**
+ * primary   — charcoal with white text (BOOK YOUR STAY)
+ * secondary — transparent with a thin border; follows the surrounding tone (EXPLORE ROOMS)
+ * light     — soft ivory fill for use over photography and dark surfaces
+ */
+export type ButtonVariant = 'primary' | 'secondary' | 'light';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const base =
-  'group/button relative inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-xs font-sans font-medium uppercase tracking-wide-xl transition-luxe disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50';
+  'group/button relative inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-none caps transition-[color,background-color,border-color] duration-500 ease-luxe disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40';
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-ink text-ivory hover:bg-espresso active:bg-umber',
-  secondary: 'border border-line-strong text-ink hover:border-ink hover:bg-ink hover:text-ivory',
-  bronze: 'bg-bronze-500 text-ivory hover:bg-bronze-600 active:bg-bronze-700',
-  light: 'bg-ivory text-ink hover:bg-white',
-  'outline-light': 'border border-ivory/50 text-ivory hover:border-ivory hover:bg-ivory hover:text-ink',
-  ghost: 'text-ink hover:bg-ink/5',
+  primary: 'bg-charcoal text-white hover:bg-charcoal-deep',
+  secondary: 'border border-line-strong text-fg hover:border-fg hover:bg-fg hover:text-canvas',
+  light: 'bg-ivory-soft text-charcoal hover:bg-white',
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: 'h-10 px-5 text-[0.6875rem]',
-  md: 'h-12 px-7 text-xs',
-  lg: 'h-14 px-9 text-xs',
+  sm: 'h-10 px-5 text-label-sm',
+  md: 'h-12 px-8 text-label',
+  lg: 'h-14 px-10 text-label',
 };
 
 type ButtonOwnProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  /** Icon rendered after the label; nudges forward on hover */
   icon?: ReactNode;
   iconPosition?: 'start' | 'end';
   fullWidth?: boolean;
@@ -58,8 +59,8 @@ export function Button({
     <span
       aria-hidden="true"
       className={cn(
-        'inline-flex shrink-0 transition-transform duration-500 ease-luxe [&_svg]:size-4 [&_svg]:stroke-[1.5]',
-        iconPosition === 'end' ? 'group-hover/button:translate-x-1' : 'group-hover/button:-translate-x-0.5',
+        'inline-flex shrink-0 transition-transform duration-500 ease-luxe [&_svg]:size-3.5 [&_svg]:stroke-[1.25]',
+        iconPosition === 'end' && 'group-hover/button:translate-x-0.5',
       )}
     >
       {icon}

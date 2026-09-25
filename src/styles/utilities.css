@@ -1,24 +1,33 @@
 /* ---------- Typography ---------- */
 
+/* Small uppercase label — section eyebrows, metadata */
 @utility eyebrow {
   font-family: var(--font-sans);
-  font-size: var(--text-eyebrow);
-  line-height: var(--text-eyebrow--line-height);
-  letter-spacing: var(--tracking-luxe);
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  letter-spacing: var(--tracking-caps-wide);
   font-weight: 500;
   text-transform: uppercase;
 }
 
-@utility font-display-italic {
+/* Uppercase tracking without a size — pair with text-label-sm / text-label-lg */
+@utility caps {
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-caps);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+@utility serif-italic {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
 }
 
-@utility prose-luxe {
+@utility prose-editorial {
   font-size: var(--text-body);
   line-height: var(--text-body--line-height);
-  color: var(--color-muted);
+  color: var(--color-fg-muted);
   max-width: var(--container-reading);
 
   & > * + * {
@@ -32,9 +41,68 @@
   padding-inline: var(--spacing-gutter);
 }
 
+/* Break an element out of any container to the full viewport width */
 @utility full-bleed {
   width: 100vw;
   margin-inline: calc(50% - 50vw);
+}
+
+/* 12-column asymmetric editorial grid (4 columns on small screens) */
+@utility grid-editorial {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--spacing-grid-gap);
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+/*
+ * Named-line layout: children sit in the content column by default and can
+ * break out to wide or full width, or bleed to one edge only.
+ */
+@utility layout-bleed {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--spacing-gutter), 1fr)
+    [wide-start] minmax(0, calc((var(--container-wide) - var(--container-content)) / 2))
+    [content-start] min(100% - 2 * var(--spacing-gutter), var(--container-content))
+    [content-end] minmax(0, calc((var(--container-wide) - var(--container-content)) / 2))
+    [wide-end] minmax(var(--spacing-gutter), 1fr) [full-end];
+
+  & > * {
+    grid-column: content;
+  }
+}
+
+@utility col-content {
+  grid-column: content;
+}
+
+@utility col-wide {
+  grid-column: wide;
+}
+
+@utility col-full {
+  grid-column: full;
+}
+
+@utility col-bleed-left {
+  grid-column: full-start / content-end;
+}
+
+@utility col-bleed-right {
+  grid-column: content-start / full-end;
+}
+
+/* Layer children in a single cell — for overlapping image/text compositions */
+@utility stack {
+  display: grid;
+
+  & > * {
+    grid-area: 1 / 1;
+  }
 }
 
 /* ---------- Motion ---------- */
@@ -45,55 +113,41 @@
   transition-timing-function: var(--ease-luxe);
 }
 
-@utility transition-luxe-slow {
-  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
-  transition-duration: var(--duration-slow);
-  transition-timing-function: var(--ease-luxe);
-}
-
-/* ---------- Surfaces ---------- */
-
-@utility tone-dark {
-  background-color: var(--color-ink);
-  color: var(--color-ivory);
-}
+/* ---------- Image overlays ---------- */
 
 @utility scrim-bottom {
   background-image: linear-gradient(
     to top,
-    rgb(20 17 14 / 0.72) 0%,
-    rgb(20 17 14 / 0.28) 45%,
-    rgb(20 17 14 / 0) 100%
+    rgb(var(--scrim) / 0.7) 0%,
+    rgb(var(--scrim) / 0.25) 45%,
+    rgb(var(--scrim) / 0) 100%
+  );
+}
+
+@utility scrim-left {
+  background-image: linear-gradient(
+    to right,
+    rgb(var(--scrim) / 0.78) 0%,
+    rgb(var(--scrim) / 0.5) 40%,
+    rgb(var(--scrim) / 0.08) 80%,
+    rgb(var(--scrim) / 0) 100%
   );
 }
 
 @utility scrim-full {
   background-image: linear-gradient(
     to bottom,
-    rgb(20 17 14 / 0.35) 0%,
-    rgb(20 17 14 / 0.1) 40%,
-    rgb(20 17 14 / 0.55) 100%
+    rgb(var(--scrim) / 0.4) 0%,
+    rgb(var(--scrim) / 0.1) 35%,
+    rgb(var(--scrim) / 0.55) 100%
   );
 }
 
-/* Fine paper grain for large flat surfaces */
-@utility grain {
-  position: relative;
-  isolation: isolate;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.35;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
+@utility scrim-soft {
+  background-color: rgb(var(--scrim) / 0.22);
 }
 
-/* ---------- Accessibility ---------- */
+/* ---------- Misc ---------- */
 
 @utility scrollbar-none {
   scrollbar-width: none;
