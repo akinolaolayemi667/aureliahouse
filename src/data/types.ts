@@ -96,6 +96,15 @@ export type MenuCourse = {
   dishes: MenuDish[];
 };
 
+export type Treatment = {
+  name: string;
+  minutes: number;
+  price: number;
+  /** Price varies with length or setting, shown as "from" */
+  fromPrice?: boolean;
+  note: string;
+};
+
 export type WellnessCategory = {
   id: string;
   name: string;
@@ -105,6 +114,7 @@ export type WellnessCategory = {
   imageAlt: string;
   /** CSS object-position for editorial cropping */
   imagePosition?: string;
+  treatments: Treatment[];
 };
 
 /** A nearby place, placed on the illustrative map by travel time and bearing from the house */

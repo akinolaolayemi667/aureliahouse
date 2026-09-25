@@ -10,6 +10,7 @@ import { IndexBand } from '@/components/ui/IndexBand';
 import { Link } from '@/components/ui/Link';
 import { MetaList } from '@/components/ui/MetaList';
 import { Section } from '@/components/ui/Section';
+import { SplitHeading } from '@/components/ui/SplitHeading';
 import {
   diningCellar,
   diningClosing,
@@ -73,38 +74,6 @@ export default function DiningPage() {
   );
 }
 
-type SectionHeaderProps = {
-  id: string;
-  eyebrow: string;
-  title: string;
-  titleEmphasis: string;
-  description: string;
-};
-
-/* Headline on the left, a short line settling at its baseline on the right. */
-function SectionHeader({ id, eyebrow, title, titleEmphasis, description }: SectionHeaderProps) {
-  return (
-    <header className="grid-editorial-bleed gap-y-8">
-      <div className="col-content lg:col-[2/9]">
-        <Reveal>
-          <p className="eyebrow text-accent">{eyebrow}</p>
-        </Reveal>
-        <TextReveal
-          as="h2"
-          id={id}
-          text={title}
-          emphasis={titleEmphasis}
-          interval={0.08}
-          className="mt-6 font-display text-h1 text-fg md:mt-8"
-        />
-      </div>
-      <Reveal delay={0.3} className="col-content md:col-[7/14] lg:col-[10/14] lg:self-end">
-        <p className="max-w-sm text-body text-fg-muted">{description}</p>
-      </Reveal>
-    </header>
-  );
-}
-
 /*
  * Morning, midday, evening as three photographs stepping down the page like
  * the sun across the day; stacked on smaller screens.
@@ -116,7 +85,7 @@ function DiningDay() {
 
   return (
     <Section tone="ivory" aria-labelledby={titleId}>
-      <SectionHeader id={titleId} {...diningDay} />
+      <SplitHeading id={titleId} {...diningDay} />
       <ol className="grid-editorial-bleed mt-section-sm gap-y-section-sm lg:mt-section">
         {diningDay.moments.map((moment, index) => (
           <DayMoment
@@ -218,7 +187,7 @@ function MenuAndCellar() {
   return (
     <Section tone="ivory" className="overflow-hidden">
       <section id="menu" aria-labelledby={menuTitleId} className="scroll-mt-masthead">
-        <SectionHeader id={menuTitleId} {...diningMenu} />
+        <SplitHeading id={menuTitleId} {...diningMenu} />
         <div className="grid-editorial-bleed mt-section-sm">
           <MenuPreview {...diningMenu.preview} className="col-content lg:col-[2/14]" />
         </div>
