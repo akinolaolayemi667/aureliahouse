@@ -1,7 +1,5 @@
 import { Fragment } from 'react';
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/cn';
-import { duration, ease } from '@/lib/motion';
 import { site } from '@/data/site';
 
 type AnnouncementBarProps = {
@@ -9,18 +7,22 @@ type AnnouncementBarProps = {
   collapsed?: boolean;
 };
 
+/*
+ * Height transitions between two fixed tokens in CSS. Animating to `auto` with Framer
+ * would measure the element and reset window scroll, cancelling any smooth scroll in flight.
+ */
 export function AnnouncementBar({ collapsed = false }: AnnouncementBarProps) {
   const items = site.announcement;
 
   return (
-    <motion.div
+    <div
       data-tone="dark"
-      initial={false}
-      animate={{ height: collapsed ? 0 : 'auto' }}
-      transition={{ duration: duration.base, ease: ease.luxe }}
-      className="overflow-hidden bg-forest-deep text-fg"
+      className={cn(
+        'overflow-hidden bg-forest-deep text-fg transition-[height] duration-700 ease-luxe',
+        collapsed ? 'h-0' : 'h-announcement',
+      )}
     >
-      <p className="caps flex h-announcement items-center justify-center gap-3 px-4 text-label-sm text-ivory/85 sm:gap-4">
+      <p className="caps flex h-announcement items-center justify-center gap-3 whitespace-nowrap px-4 text-label-sm text-ivory/85 max-[25rem]:gap-2 max-[25rem]:px-3 max-[25rem]:text-[0.625rem] max-[25rem]:tracking-[0.14em] sm:gap-4">
         {items.map((item, index) => (
           <Fragment key={item}>
             {index > 0 && (
@@ -32,6 +34,6 @@ export function AnnouncementBar({ collapsed = false }: AnnouncementBarProps) {
           </Fragment>
         ))}
       </p>
-    </motion.div>
+    </div>
   );
 }

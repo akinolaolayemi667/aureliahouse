@@ -143,6 +143,40 @@
   );
 }
 
+/* Hero: weighted to the lower-left where copy sits; the upper image stays untouched */
+@utility scrim-hero {
+  background-image:
+    linear-gradient(
+      to top,
+      rgb(var(--scrim) / 0.72) 0%,
+      rgb(var(--scrim) / 0.46) 28%,
+      rgb(var(--scrim) / 0.18) 56%,
+      rgb(var(--scrim) / 0) 82%
+    ),
+    linear-gradient(
+      to right,
+      rgb(var(--scrim) / 0.46) 0%,
+      rgb(var(--scrim) / 0.26) 38%,
+      rgb(var(--scrim) / 0) 72%
+    );
+}
+
+/* Portrait screens: copy climbs into the sky, so the gradient reaches the top */
+@utility scrim-hero-tall {
+  background-image: linear-gradient(
+    to top,
+    rgb(var(--scrim) / 0.78) 0%,
+    rgb(var(--scrim) / 0.52) 35%,
+    rgb(var(--scrim) / 0.4) 65%,
+    rgb(var(--scrim) / 0.55) 100%
+  );
+}
+
+/* Barely-there halo for type set directly on photography — pair with a scrim, never replace it */
+@utility text-legible {
+  text-shadow: 0 1px 24px rgb(var(--scrim) / 0.32);
+}
+
 @utility scrim-soft {
   background-color: rgb(var(--scrim) / 0.22);
 }

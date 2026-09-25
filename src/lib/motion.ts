@@ -21,6 +21,8 @@ export const duration = {
   slow: 0.9,
   reveal: 1,
   scale: 1.8,
+  /** Hero image settle on first load */
+  cinematic: 2.6,
 } as const;
 
 /* Pixels — movement stays small */

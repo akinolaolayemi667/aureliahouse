@@ -42,6 +42,13 @@
   --text-display--letter-spacing: -0.025em;
   --text-display--font-weight: 300;
 
+  /* Homepage hero — 3.25rem on phones, ~4.8rem on tablet, capped at 8.5rem.
+     Also capped by viewport height so short screens keep the whole composition above the fold. */
+  --text-hero: clamp(3.25rem, min(1rem + 8vw, 14svh), 8.5rem);
+  --text-hero--line-height: 0.95;
+  --text-hero--letter-spacing: -0.02em;
+  --text-hero--font-weight: 300;
+
   --text-h1: clamp(3rem, 6vw, 6rem);
   --text-h1--line-height: 0.98;
   --text-h1--letter-spacing: -0.02em;

@@ -60,6 +60,8 @@ type ImageWrapperProps = {
   graded?: boolean;
   /** CSS object-position for editorial cropping, e.g. "center 30%" */
   position?: string;
+  /** Surface shown while loading — `dark` for photography on dark heroes */
+  placeholder?: 'sand' | 'dark';
   className?: string;
   imageClassName?: string;
   /** Content layered above the image and overlay (captions, badges …); inherits the dark tone */
@@ -78,6 +80,7 @@ export function ImageWrapper({
   shape = 'rect',
   graded = true,
   position,
+  placeholder = 'sand',
   className,
   imageClassName,
   children,
@@ -91,7 +94,10 @@ export function ImageWrapper({
 
   const frame = (
     <>
-      <div aria-hidden="true" className="absolute inset-0 bg-sand" />
+      <div
+        aria-hidden="true"
+        className={cn('absolute inset-0', placeholder === 'dark' ? 'bg-charcoal-deep' : 'bg-sand')}
+      />
       <img
         ref={imageRef}
         src={src}

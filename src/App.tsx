@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     errorElement: <RouteErrorPage />,
     HydrateFallback: RouteFallback,
     children: [
-      { path: routes.home, ...page(() => import('@/pages/HomePage')) },
+      { path: routes.home, ...page(() => import('@/pages/HomePage'), { headerTheme: 'overlay' }) },
       { path: routes.rooms, ...page(() => import('@/pages/RoomsPage')) },
       { path: routes.room, ...page(() => import('@/pages/RoomDetailPage')) },
       { path: routes.experiences, ...page(() => import('@/pages/ExperiencesPage')) },

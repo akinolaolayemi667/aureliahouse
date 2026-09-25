@@ -42,4 +42,6 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 
 - The masthead (announcement bar + nav) reads the tone of the section beneath it from `data-tone`; put `data-nav-tone="dark"` on full-bleed photographic sections.
 - Pages opening with a full-bleed hero set `handle: { headerTheme: 'overlay' }` and pad hero content with `pt-masthead`; all other pages get `pt-masthead` automatically.
+- Never animate height to `'auto'` with Framer in persistent chrome (header, bars) — its measurement resets window scroll and cancels smooth scrolling. Transition between fixed tokens in CSS instead.
+- Type set directly on photography: a scrim first (`scrim-hero`, `overlay=…`), optionally `text-legible` for a faint halo — never a heavy text shadow.
 - Navigation items live in `@/data/navigation` (`navLeft`, `navRight`, `menuNav`) — never hardcode links in the header.
