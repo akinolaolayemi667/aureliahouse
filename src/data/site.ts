@@ -6,7 +6,7 @@ export const site = {
   description:
     'A contemporary boutique retreat of considered design, unhurried rituals and intimate hospitality.',
   locale: 'en-GB',
-  currency: 'EUR',
+  currency: 'USD',
   contact: {
     phone: '+30 22860 00000',
     phoneHref: 'tel:+302286000000',

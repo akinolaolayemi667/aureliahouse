@@ -3,6 +3,8 @@ import { site } from '@/data/site';
 const priceFormatter = new Intl.NumberFormat(site.locale, {
   style: 'currency',
   currency: site.currency,
+  /* "$520", not the en-GB default "US$520" */
+  currencyDisplay: 'narrowSymbol',
   maximumFractionDigits: 0,
 });
 
@@ -11,7 +13,7 @@ export function formatPrice(value: number) {
 }
 
 export function formatSize(squareMetres: number) {
-  return `${squareMetres} m²`;
+  return `${squareMetres} sq m`;
 }
 
 export function formatGuests(guests: number) {

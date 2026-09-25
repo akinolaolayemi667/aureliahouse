@@ -4,6 +4,7 @@ import { ArrowDown, ArrowRight } from 'lucide-react';
 import { Reveal, TextReveal } from '@/components/animations';
 import { Button } from '@/components/ui/Button';
 import { ImageWrapper } from '@/components/ui/ImageWrapper';
+import { MetaList } from '@/components/ui/MetaList';
 import { homeHero } from '@/data/home';
 import { useBooking } from '@/hooks/useBooking';
 import { duration, ease } from '@/lib/motion';
@@ -103,31 +104,10 @@ export function HomeHero() {
         </Reveal>
 
         <Reveal immediate delay={timeline.metadata} className="mt-12 border-t border-line py-5 md:mt-4">
-          <HeroMetadata items={homeHero.metadata} />
+          <MetaList items={homeHero.metadata} label="At a glance" />
         </Reveal>
       </div>
     </section>
-  );
-}
-
-/*
- * Tiny uppercase facts separated by hairlines. The list is pulled left by one
- * gap so a divider starting a wrapped line is clipped — lines always begin with text.
- */
-function HeroMetadata({ items }: { items: readonly string[] }) {
-  return (
-    <div className="overflow-hidden">
-      <ul
-        aria-label="At a glance"
-        className="caps -ml-[calc(var(--meta-gap)+1px)] flex flex-wrap gap-y-2.5 text-label-sm text-fg-muted [--meta-gap:1rem] md:[--meta-gap:1.5rem]"
-      >
-        {items.map((item) => (
-          <li key={item} className="border-l border-line-strong px-[var(--meta-gap)] leading-none">
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
 

@@ -110,7 +110,7 @@ export function ImageWrapper({
         onLoad={() => setLoaded(true)}
         style={position ? { objectPosition: position } : undefined}
         className={cn(
-          'absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1400ms] ease-out',
+          'absolute inset-0 h-full w-full object-cover transition-[opacity,scale] duration-[1400ms] ease-out',
           loaded ? 'opacity-100' : 'opacity-0',
           graded && 'photo-grade',
           zoomOnHover && 'group-hover:scale-[1.035]',

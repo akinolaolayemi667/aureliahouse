@@ -18,6 +18,9 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 | Entrances | `Reveal`, `FadeIn`, `Stagger`/`StaggerItem`, `TextReveal`, `ImageReveal`, `SlowScale` |
 | "Book your stay" CTA | `<Button onClick={() => openBooking()}>` via `useBooking()` — opens the shared booking panel |
 | Quantity input | `<Stepper>` |
+| Tiny uppercase facts with hairline dividers | `<MetaList items label>` |
+| Room photography / room caption | `<RoomImage>` + `<RoomDetails>` from `@/components/hotel/rooms` |
+| Photo bleeding off one edge, copy on the 12-col grid | `grid-editorial-bleed` + `col-full` / `col-content` / `lg:col-[1/8]` (line 1 = viewport edge, column n starts at line n + 1) |
 
 ```tsx
 // ❌ BAD — hardcoded colours, ad-hoc button, rounded card

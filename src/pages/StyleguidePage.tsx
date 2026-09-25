@@ -44,7 +44,7 @@ function SpecLabel({ children }: { children: string }) {
 export default function StyleguidePage() {
   usePageMeta({ title: 'Visual Language', noIndex: true });
 
-  const [heroRoom, detailRoom, , , signatureRoom] = rooms;
+  const [signatureRoom, heroRoom, detailRoom] = rooms;
   const [yoga, sailing, , , coastalWalk] = experiences;
   const [restaurant] = dining;
 

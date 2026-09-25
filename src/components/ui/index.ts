@@ -6,6 +6,7 @@ export { Divider } from './Divider';
 export { IconButton, type IconButtonProps } from './IconButton';
 export { ImageWrapper, type AspectRatio, type ImageOverlay } from './ImageWrapper';
 export { Link, type LinkProps, type LinkVariant } from './Link';
+export { MetaList } from './MetaList';
 export { Modal, type ModalSize, type ModalTone, type ModalVariant } from './Modal';
 export { Section, type SectionSpacing, type SectionTone } from './Section';
 export { SectionHeading, type SectionHeadingSize } from './SectionHeading';

@@ -76,6 +76,24 @@
   }
 }
 
+/*
+ * The 12-column editorial grid flanked by bleed tracks, so imagery can run to
+ * the viewport edge while copy stays on the content grid. Line numbers:
+ * 1 = viewport left · 2–14 = content columns (column n starts at line n + 1) · 15 = viewport right.
+ * Place children explicitly, e.g. `col-content`, `col-full` or `lg:col-[1/9]`.
+ */
+@utility grid-editorial-bleed {
+  display: grid;
+  column-gap: var(--spacing-grid-gap);
+  grid-template-columns:
+    [full-start] minmax(0, 1fr)
+    [content-start] repeat(
+      12,
+      calc((min(100% - 2 * var(--spacing-gutter), var(--container-content)) - 11 * var(--spacing-grid-gap)) / 12)
+    )
+    [content-end] minmax(0, 1fr) [full-end];
+}
+
 @utility col-content {
   grid-column: content;
 }

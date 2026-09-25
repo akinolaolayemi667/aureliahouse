@@ -1,4 +1,4 @@
-export type RoomCategory = 'Room' | 'Suite' | 'Signature Suite' | 'Villa';
+export type RoomCategory = 'Signature Suite' | 'Private Residence' | 'Deluxe Room' | 'Loft Suite';
 
 export type Room = {
   id: string;
@@ -7,7 +7,7 @@ export type Room = {
   category: RoomCategory;
   tagline: string;
   description: string;
-  /** Nightly rate from, in site currency */
+  /** Indicative nightly rate from, in site currency — demo value, not live availability */
   price: number;
   /** Square metres */
   size: number;
@@ -15,6 +15,10 @@ export type Room = {
   beds: string;
   view: string;
   image: string;
+  /** Describes the photograph for screen readers */
+  imageAlt: string;
+  /** CSS object-position for editorial cropping */
+  imagePosition?: string;
   gallery?: string[];
   featured?: boolean;
   amenities: string[];
