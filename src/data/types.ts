@@ -55,6 +55,18 @@ export type Experience = {
   /** Minutes — omit for open-ended experiences */
   duration?: number;
   featured?: boolean;
+  /** Longer story for the experiences page */
+  story: string;
+  /** What comes with it, as short phrases */
+  includes: string[];
+  /** How and when to arrange it */
+  arrange: string;
+};
+
+/** A labelled note in a hairline index, e.g. "Breakfast — served until 10:30" */
+export type IndexNote = {
+  label: string;
+  detail: string;
 };
 
 /** A filter groups one or more categories under a single label; no categories means "All" */
