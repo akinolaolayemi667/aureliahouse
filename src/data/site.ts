@@ -21,6 +21,11 @@ export const site = {
   },
   checkIn: '15:00',
   checkOut: '11:00',
+  announcement: ['Private arrivals', 'Personalized stays', 'Aurelia House'],
+  booking: {
+    maxGuests: 8,
+    maxRooms: 4,
+  },
 } as const;
 
 export const socialLinks: SocialLink[] = [

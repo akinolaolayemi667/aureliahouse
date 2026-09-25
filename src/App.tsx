@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       { path: routes.about, ...page(() => import('@/pages/AboutPage')) },
       { path: routes.contact, ...page(() => import('@/pages/ContactPage')) },
       { path: routes.booking, ...page(() => import('@/pages/BookingPage')) },
-      { path: routes.styleguide, ...page(() => import('@/pages/StyleguidePage')) },
+      { path: routes.styleguide, ...page(() => import('@/pages/StyleguidePage'), { headerTheme: 'overlay' }) },
       { path: '*', Component: NotFoundPage },
     ],
   },

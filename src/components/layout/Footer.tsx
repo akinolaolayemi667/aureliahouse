@@ -1,6 +1,6 @@
 import { footerNav } from '@/data/navigation';
 import { site, socialLinks } from '@/data/site';
-import { bookingPath } from '@/lib/routes';
+import { useBooking } from '@/hooks/useBooking';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Divider } from '@/components/ui/Divider';
@@ -9,6 +9,7 @@ import { Logo } from './Logo';
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { openBooking } = useBooking();
 
   return (
     <footer data-tone="dark" className="bg-forest-deep text-fg">
@@ -17,7 +18,7 @@ export function Footer() {
           <div className="col-span-4 flex flex-col items-start gap-8 md:col-span-12 lg:col-span-4">
             <Logo size="md" className="items-start" />
             <p className="max-w-xs text-small text-fg-muted">{site.description}</p>
-            <Button to={bookingPath()} variant="secondary" size="sm">
+            <Button onClick={() => openBooking()} aria-haspopup="dialog" variant="secondary" size="sm">
               Book your stay
             </Button>
           </div>

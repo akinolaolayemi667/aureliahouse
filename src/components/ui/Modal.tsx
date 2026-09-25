@@ -13,7 +13,7 @@ export type ModalVariant = 'dialog' | 'fullscreen' | 'drawer';
 export type ModalTone = 'light' | 'charcoal' | 'forest';
 
 const surfaces: Record<ModalTone, { className: string; tone: 'light' | 'dark' }> = {
-  light: { className: 'bg-ivory-soft', tone: 'light' },
+  light: { className: 'bg-ivory', tone: 'light' },
   charcoal: { className: 'bg-charcoal', tone: 'dark' },
   forest: { className: 'bg-forest-deep', tone: 'dark' },
 };
@@ -46,9 +46,13 @@ const panelMotion = {
 type ModalProps = {
   open: boolean;
   onClose: () => void;
+  /** Panel id — reference it from the trigger's `aria-controls` */
+  id?: string;
   /** Accessible title; visually hidden when `hideTitle` is set */
   title: string;
   hideTitle?: boolean;
+  /** Small uppercase label above the title */
+  eyebrow?: string;
   /** Custom content for the top bar, shown beside the close button (e.g. a logo) */
   headerContent?: ReactNode;
   description?: string;
@@ -64,8 +68,10 @@ type ModalProps = {
 export function Modal({
   open,
   onClose,
+  id,
   title,
   hideTitle = false,
+  eyebrow,
   headerContent,
   description,
   variant = 'dialog',
@@ -116,6 +122,7 @@ export function Modal({
 
           <motion.div
             ref={panelRef}
+            id={id}
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
@@ -140,6 +147,7 @@ export function Modal({
               )}
             >
               <div className={cn(hideTitle && 'sr-only')}>
+                {eyebrow && <p className="eyebrow mb-4 text-accent">{eyebrow}</p>}
                 <h2 id={titleId} className="text-h3">
                   {title}
                 </h2>
@@ -150,7 +158,7 @@ export function Modal({
                 )}
               </div>
               {headerContent}
-              <IconButton label={closeLabel} onClick={onClose} data-autofocus className="-mr-2 ml-auto">
+              <IconButton label={closeLabel} onClick={onClose} data-autofocus-fallback className="-mr-2 ml-auto">
                 <X />
               </IconButton>
             </div>

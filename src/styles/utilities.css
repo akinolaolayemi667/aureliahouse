@@ -171,6 +171,29 @@
   filter: saturate(0.92) contrast(1.03) sepia(0.06) brightness(1.01);
 }
 
+/* ---------- Forms ---------- */
+
+/* Native date input, quietened to match the editorial type */
+@utility input-date {
+  color-scheme: light;
+  min-height: 2.5rem;
+
+  &::-webkit-datetime-edit {
+    padding: 0;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0.45;
+    cursor: pointer;
+    transition: opacity var(--duration-fast) var(--ease-luxe);
+  }
+
+  &:hover::-webkit-calendar-picker-indicator,
+  &:focus-visible::-webkit-calendar-picker-indicator {
+    opacity: 0.9;
+  }
+}
+
 /* ---------- Misc ---------- */
 
 @utility scrollbar-none {

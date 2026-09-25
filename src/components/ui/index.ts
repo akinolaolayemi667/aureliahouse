@@ -9,3 +9,4 @@ export { Link, type LinkProps, type LinkVariant } from './Link';
 export { Modal, type ModalSize, type ModalTone, type ModalVariant } from './Modal';
 export { Section, type SectionSpacing, type SectionTone } from './Section';
 export { SectionHeading, type SectionHeadingSize } from './SectionHeading';
+export { Stepper } from './Stepper';

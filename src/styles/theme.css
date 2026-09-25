@@ -95,7 +95,10 @@
   --spacing-section-sm: clamp(4rem, 3rem + 4vw, 7rem);
   --spacing-section: clamp(6rem, 4rem + 8vw, 11rem);
   --spacing-section-lg: clamp(7.5rem, 4.5rem + 12vw, 15rem);
-  --spacing-header: 5.5rem;
+  /* Masthead = announcement bar + navigation (heights set responsively below) */
+  --spacing-header: var(--nav-height);
+  --spacing-announcement: var(--announcement-height);
+  --spacing-masthead: calc(var(--announcement-height) + var(--nav-height));
 
   /* ---------- Radius — square by default ---------- */
   --radius-*: initial;
@@ -141,6 +144,15 @@
   --color-line: var(--tone-line);
   --color-line-strong: var(--tone-line-strong);
   --color-accent: var(--tone-accent);
+}
+
+:root {
+  --announcement-height: 2rem;
+  --nav-height: 4rem;
+
+  @media (width >= 64rem) {
+    --nav-height: 4.75rem;
+  }
 }
 
 /* Motion durations shared by CSS utilities (mirrors src/lib/motion.ts) */

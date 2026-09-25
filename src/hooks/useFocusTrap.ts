@@ -18,14 +18,18 @@ function getFocusable(container: HTMLElement) {
   );
 }
 
-/* Keeps keyboard focus inside `ref` while active and restores it on release. */
+/* Keeps keyboard focus inside `ref` while active and restores it on release.
+   Initial focus: [data-autofocus], then [data-autofocus-fallback], then the first focusable. */
 export function useFocusTrap(ref: RefObject<HTMLElement | null>, active: boolean) {
   useEffect(() => {
     const container = ref.current;
     if (!active || !container) return;
 
     const previouslyFocused = document.activeElement as HTMLElement | null;
-    const initial = container.querySelector<HTMLElement>('[data-autofocus]') ?? getFocusable(container)[0];
+    const initial =
+      container.querySelector<HTMLElement>('[data-autofocus]') ??
+      container.querySelector<HTMLElement>('[data-autofocus-fallback]') ??
+      getFocusable(container)[0];
     (initial ?? container).focus({ preventScroll: true });
 
     const onKeyDown = (event: KeyboardEvent) => {

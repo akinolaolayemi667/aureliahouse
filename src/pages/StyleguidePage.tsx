@@ -50,24 +50,34 @@ export default function StyleguidePage() {
 
   return (
     <>
-      {/* Opening statement */}
-      <Section spacing="lg" className="pb-section-sm">
-        <Container>
-          <Reveal immediate>
-            <p className="eyebrow mb-8 text-accent">Aurelia House · Visual Language</p>
-          </Reveal>
-          <TextReveal as="h1" immediate delay={0.1} text="Quiet luxury, composed." className="max-w-5xl text-display" />
-          <Reveal immediate delay={0.5} className="mt-10 grid-editorial">
-            <p className="col-span-4 text-lead text-fg-muted md:col-span-6 md:col-start-7">
-              Mediterranean quiet luxury: an editorial, organic-modern language of intimacy, architecture
-              and nature. The house feels expensive because of composition, not decoration.
-            </p>
-          </Reveal>
-        </Container>
-      </Section>
+      {/* Opening statement — full-bleed hero beneath the transparent masthead */}
+      <section aria-label="Opening" data-nav-tone="dark">
+        <ImageWrapper
+          src={signatureRoom!.image}
+          alt={signatureRoom!.name}
+          ratio="auto"
+          overlay="left"
+          priority
+          sizes="100vw"
+          className="min-h-[92svh]"
+        >
+          <Container size="wide" className="flex min-h-[92svh] flex-col justify-end pt-masthead pb-section-sm">
+            <Reveal immediate>
+              <p className="eyebrow mb-8 text-gold-soft">Aurelia House · Visual Language</p>
+            </Reveal>
+            <TextReveal as="h1" immediate delay={0.1} text="Quiet luxury, composed." className="max-w-5xl text-display" />
+            <Reveal immediate delay={0.5} className="mt-10 grid-editorial">
+              <p className="col-span-4 text-lead text-fg-muted md:col-span-6 md:col-start-7">
+                Mediterranean quiet luxury: an editorial, organic-modern language of intimacy, architecture
+                and nature. The house feels expensive because of composition, not decoration.
+              </p>
+            </Reveal>
+          </Container>
+        </ImageWrapper>
+      </section>
 
       {/* Colour */}
-      <Section spacing="md" className="pt-0">
+      <Section spacing="md">
         <Container>
           <Divider label="01 — Colour" className="mb-16" />
           <Stagger as="ul" className="grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-6">
@@ -217,7 +227,7 @@ export default function StyleguidePage() {
       </Section>
 
       {/* Full-bleed cinematic image with soft overlay */}
-      <section aria-label="Full-bleed imagery">
+      <section aria-label="Full-bleed imagery" data-nav-tone="dark">
         <ImageWrapper
           src={restaurant!.image}
           alt={restaurant!.name}

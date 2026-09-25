@@ -1,11 +1,17 @@
-import { useEffect, useRef } from 'react';
-import { Outlet, ScrollRestoration, useLocation, useMatches } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/cn';
-import { duration, ease } from '@/lib/motion';
-import { Footer } from './Footer';
-import { Header, type HeaderTheme } from './Header';
-import { SkipLink } from './SkipLink';
+import { useEffect, useRef } from "react";
+import {
+  Outlet,
+  ScrollRestoration,
+  useLocation,
+  useMatches,
+} from "react-router-dom";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/cn";
+import { duration, ease } from "@/lib/motion";
+import { BookingProvider } from "@/components/hotel/booking/BookingProvider";
+import { Footer } from "./Footer";
+import { Header, type HeaderTheme } from "./Header";
+import { SkipLink } from "./SkipLink";
 
 /** Per-route layout options, set via `handle` in the route definition. */
 export type RouteHandle = {
@@ -14,12 +20,15 @@ export type RouteHandle = {
 
 function useRouteHandle(): RouteHandle {
   const matches = useMatches();
-  return matches.reduce<RouteHandle>((handle, match) => ({ ...handle, ...(match.handle as RouteHandle) }), {});
+  return matches.reduce<RouteHandle>(
+    (handle, match) => ({ ...handle, ...(match.handle as RouteHandle) }),
+    {},
+  );
 }
 
 export function RootLayout() {
   const { pathname } = useLocation();
-  const { headerTheme = 'solid' } = useRouteHandle();
+  const { headerTheme = "solid" } = useRouteHandle();
   const mainRef = useRef<HTMLElement>(null);
   const isFirstRender = useRef(true);
 
@@ -33,28 +42,33 @@ export function RootLayout() {
   }, [pathname]);
 
   return (
-    <div className="flex min-h-dvh flex-col">
-      <SkipLink />
-      <Header theme={headerTheme} />
+    <BookingProvider>
+      <div className="flex min-h-dvh flex-col">
+        <SkipLink />
+        <Header theme={headerTheme} />
 
-      <main
-        id="main"
-        ref={mainRef}
-        tabIndex={-1}
-        className={cn('flex-1 outline-none', headerTheme === 'solid' && 'pt-header')}
-      >
-        <motion.div
-          key={pathname}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: duration.fast, ease: ease.out }}
+        <main
+          id="main"
+          ref={mainRef}
+          tabIndex={-1}
+          className={cn(
+            "flex-1 outline-none",
+            headerTheme === "solid" && "pt-masthead",
+          )}
         >
-          <Outlet />
-        </motion.div>
-      </main>
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: duration.fast, ease: ease.out }}
+          >
+            <Outlet />
+          </motion.div>
+        </main>
 
-      <Footer />
-      <ScrollRestoration />
-    </div>
+        <Footer />
+        <ScrollRestoration />
+      </div>
+    </BookingProvider>
   );
 }

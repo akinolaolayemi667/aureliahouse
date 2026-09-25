@@ -19,11 +19,20 @@ export function roomPath(slug: string) {
   return `/rooms/${slug}`;
 }
 
-export function bookingPath(params?: { room?: string; offer?: string }) {
-  if (!params) return routes.booking;
+type BookingParams = {
+  room?: string;
+  offer?: string;
+  checkIn?: string;
+  checkOut?: string;
+  guests?: number;
+  rooms?: number;
+};
+
+export function bookingPath(params: BookingParams = {}) {
   const search = new URLSearchParams();
-  if (params.room) search.set('room', params.room);
-  if (params.offer) search.set('offer', params.offer);
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== '') search.set(key, String(value));
+  }
   const query = search.toString();
   return query ? `${routes.booking}?${query}` : routes.booking;
 }

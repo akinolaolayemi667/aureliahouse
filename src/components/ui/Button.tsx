@@ -14,9 +14,9 @@ const base =
   'group/button relative inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-none caps transition-[color,background-color,border-color] duration-500 ease-luxe disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40';
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-charcoal text-white hover:bg-charcoal-deep',
+  primary: 'bg-charcoal text-white hover:bg-forest-deep',
   secondary: 'border border-line-strong text-fg hover:border-fg hover:bg-fg hover:text-canvas',
-  light: 'bg-ivory-soft text-charcoal hover:bg-white',
+  light: 'bg-ivory-soft text-charcoal hover:bg-gold-soft',
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -60,7 +60,7 @@ export function Button({
       aria-hidden="true"
       className={cn(
         'inline-flex shrink-0 transition-transform duration-500 ease-luxe [&_svg]:size-3.5 [&_svg]:stroke-[1.25]',
-        iconPosition === 'end' && 'group-hover/button:translate-x-0.5',
+        iconPosition === 'end' && 'group-hover/button:translate-x-1',
       )}
     >
       {icon}

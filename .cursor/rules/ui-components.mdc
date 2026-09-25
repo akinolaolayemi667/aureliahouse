@@ -16,6 +16,8 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 | Eyebrow + title + description | `<SectionHeading eyebrow title description size as>` |
 | Photography | `<ImageWrapper ratio overlay zoomOnHover reveal shape>` |
 | Entrances | `Reveal`, `FadeIn`, `Stagger`/`StaggerItem`, `TextReveal`, `ImageReveal`, `SlowScale` |
+| "Book your stay" CTA | `<Button onClick={() => openBooking()}>` via `useBooking()` — opens the shared booking panel |
+| Quantity input | `<Stepper>` |
 
 ```tsx
 // ❌ BAD — hardcoded colours, ad-hoc button, rounded card
@@ -35,3 +37,9 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 - Routes come from `@/lib/routes`; content from typed data in `@/data`.
 - Headings: visual size (`size`) is independent of semantic level (`as`) — keep one `h1` per page.
 - Register any new font-size/shadow/aspect token in `src/lib/cn.ts` so `cn()` merges it correctly.
+
+## Navigation / masthead
+
+- The masthead (announcement bar + nav) reads the tone of the section beneath it from `data-tone`; put `data-nav-tone="dark"` on full-bleed photographic sections.
+- Pages opening with a full-bleed hero set `handle: { headerTheme: 'overlay' }` and pad hero content with `pt-masthead`; all other pages get `pt-masthead` automatically.
+- Navigation items live in `@/data/navigation` (`navLeft`, `navRight`, `menuNav`) — never hardcode links in the header.

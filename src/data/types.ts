@@ -64,6 +64,17 @@ export type Offer = {
   featured?: boolean;
 };
 
+export type BookingRequest = {
+  /** ISO date, yyyy-mm-dd */
+  checkIn: string;
+  /** ISO date, yyyy-mm-dd */
+  checkOut: string;
+  guests: number;
+  rooms: number;
+  /** Room slug when booking a specific room */
+  room?: string;
+};
+
 export type NavItem = {
   label: string;
   to: string;
