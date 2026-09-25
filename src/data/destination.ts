@@ -22,6 +22,8 @@ export const destinations: Destination[] = [
     slug: 'old-town',
     name: 'Old Town',
     description: 'A historic district filled with independent shops, architecture and quiet streets.',
+    story:
+      'Go early, before the shutters lift: coffee standing at the bar, lanes still cool from the night, and the bell tower catching the first sun. Your host will mark the bakery and the bookbinder worth finding.',
     minutes: 15,
     bearing: 62,
     labelSide: 'right',
@@ -33,6 +35,8 @@ export const destinations: Destination[] = [
     slug: 'lake-district',
     name: 'Lake District',
     description: 'A peaceful landscape of water, walking trails and open skies.',
+    story:
+      'A path circles the water through pines and reed beds, flat enough for an easy afternoon. We pack a picnic and a blanket, and arrange a rowing boat if the water is still.',
     minutes: 20,
     bearing: 320,
     labelSide: 'right',
@@ -44,6 +48,8 @@ export const destinations: Destination[] = [
     slug: 'artisan-quarter',
     name: 'Artisan Quarter',
     description: 'Studios, galleries and independent makers worth discovering slowly.',
+    story:
+      'Potters, weavers and a glassblower who have worked the same streets for decades. Many of the pieces in the house were made here — most studios welcome visitors who ask ahead.',
     minutes: 12,
     bearing: 245,
     labelSide: 'right',
@@ -56,6 +62,8 @@ export const destinations: Destination[] = [
     slug: 'mountain-trail',
     name: 'Mountain Trail',
     description: 'A scenic route through elevated terrain and surrounding woodland.',
+    story:
+      'A half-day climb through oak and chestnut to a ridge with the whole coast below. Start at first light with a guide from the house, and be back in time for a late lunch.',
     minutes: 30,
     bearing: 350,
     labelSide: 'right',
@@ -67,6 +75,8 @@ export const destinations: Destination[] = [
     slug: 'market-square',
     name: 'Market Square',
     description: 'A lively local market with seasonal produce, food and small independent businesses.',
+    story:
+      'Saturday mornings under canvas awnings: cheese, olives, figs in season and the fishermen’s catch. The kitchen shops here too — ask to go along.',
     minutes: 10,
     bearing: 200,
     labelSide: 'left',

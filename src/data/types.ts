@@ -123,6 +123,8 @@ export type Destination = {
   slug: string;
   name: string;
   description: string;
+  /** Longer note for the about page */
+  story: string;
   /** Approximate travel time from the house */
   minutes: number;
   /** Compass bearing from the house in degrees (0 = north) — illustrative, not geographic */

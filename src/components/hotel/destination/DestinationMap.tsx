@@ -10,6 +10,8 @@ type DestinationMapProps = {
   destinations: Destination[];
   /** Destination highlighted from the list (hover or focus) */
   activeId?: string | null;
+  /** Show a small photograph of the active place on the map; off where the photographs sit beside it */
+  previews?: boolean;
   className?: string;
 };
 
@@ -54,7 +56,7 @@ const valleys = [
  * markers and routes in muted gold, on warm ivory. The preview photograph takes
  * the corner diagonally opposite the active marker so it never hides it.
  */
-export function DestinationMap({ destinations, activeId = null, className }: DestinationMapProps) {
+export function DestinationMap({ destinations, activeId = null, previews = true, className }: DestinationMapProps) {
   const reduceMotion = useReducedMotion();
   const outerRing = Math.max(...destinationMap.rings);
 
@@ -209,7 +211,8 @@ export function DestinationMap({ destinations, activeId = null, className }: Des
           })}
         </Stagger>
 
-        {points.map(({ destination, x, y }) => (
+        {previews &&
+          points.map(({ destination, x, y }) => (
           <div
             key={destination.id}
             aria-hidden="true"
