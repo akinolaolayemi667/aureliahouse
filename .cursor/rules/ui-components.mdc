@@ -24,6 +24,7 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 | Different crop on mobile | `<ImageWrapper position mobilePosition>` (mobile applies below `md`) |
 | Room photography / room caption | `<RoomImage>` + `<RoomDetails>` from `@/components/hotel/rooms` (`headingAs="h2"` where rooms are the page's main sections) |
 | "Every stay includes" band | `<StayIncludes>` from `@/components/hotel/rooms/StayIncludes` |
+| Crossfading photographs driven by a selection | Stack every frame absolutely and toggle opacity (see `MomentSequence` in `HomeMoment`) — frames preload, so there is no blank flash; keep `AnimatePresence` for the text beside it |
 | Reserve a specific room | `openBooking({ room: slug })` — a bare `openBooking()` always means "any room" |
 | Link to a pre-filled contact message | `${routes.contact}?enquiry=<topic>` — topics live in `enquiryTopics` (`@/data/contact`); a room slug or `rooms` means a stay |
 | Link into the reservation page with choices filled in | `bookingPath({ checkIn, checkOut, guests, rooms, room, offer })`; the live engine is set once in `bookingEngine` (`@/data/booking`) — null sends an email request instead |
