@@ -26,6 +26,7 @@ Reuse primitives from `@/components/ui` and `@/components/animations`. Never re-
 | Hairline that draws in on scroll | `<Divider reveal>` (vertical: `orientation="vertical"`) |
 | Muted gold separator (sparingly — one short rule per caption at most) | `<span aria-hidden className="h-px w-10 bg-gold/70" />` |
 | Service hours row / typographic menu page | `<DiningServices>`, `<MenuPreview>` from `@/components/hotel/dining` |
+| Offer entry (index, kicker, title, inclusions, price, link) | `<OfferDetails>` from `@/components/hotel/offers/OfferDetails` — list it editorially (hairline-separated rows), never as cards |
 | Experience photography / caption / category filter | `<ExperienceImage>`, `<ExperienceCaption>`, `<ExperienceFilterBar>` from `@/components/hotel/experiences` |
 | Photo bleeding off one edge, copy on the 12-col grid | `grid-editorial-bleed` + `col-full` / `col-content` / `lg:col-[1/8]` (line 1 = viewport edge, column n starts at line n + 1) |
 

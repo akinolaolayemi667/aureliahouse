@@ -44,6 +44,17 @@ export const homeSpa = {
     'A quiet collection of treatments and rituals designed to restore balance, encourage rest and reconnect you with the present moment.',
 };
 
+export const homeOffers = {
+  eyebrow: 'Stays & privileges',
+  title: 'Reasons to\nStay Longer.',
+  titleEmphasis: 'Longer.',
+  description:
+    'Considered ways to stay — for slower weeks, shared evenings and time set aside for rest. Each is arranged directly with our reservations team.',
+  offerCta: 'View offer',
+  viewAll: { label: 'View all offers', to: routes.offers },
+  priceNote: 'Indicative prices; availability and final rates are confirmed on enquiry.',
+};
+
 export const homeDining = {
   eyebrow: 'At the table',
   title: 'Food With\na Sense of Place.',

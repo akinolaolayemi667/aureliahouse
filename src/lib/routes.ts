@@ -23,6 +23,10 @@ export function experiencePath(slug: string) {
   return `${routes.experiences}#${slug}`;
 }
 
+export function offerPath(slug: string) {
+  return `${routes.offers}#${slug}`;
+}
+
 type BookingParams = {
   room?: string;
   offer?: string;

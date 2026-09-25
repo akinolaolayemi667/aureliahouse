@@ -55,7 +55,7 @@ export function HomeSpa() {
     <Section
       tone="soft"
       aria-labelledby={titleId}
-      className="overflow-hidden bg-linear-to-b from-ivory via-ivory-soft via-45% to-sand/60"
+      className="overflow-hidden bg-linear-to-b from-ivory via-ivory-soft via-45% to-sand"
     >
       <header className="grid-editorial-bleed gap-y-10">
         <div className="col-content lg:col-[2/9]">

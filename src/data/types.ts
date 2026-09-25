@@ -87,11 +87,18 @@ export type WellnessCategory = {
 export type Offer = {
   id: string;
   slug: string;
+  /** Short kicker, e.g. "Longer stays" */
+  label: string;
   title: string;
   description: string;
   image: string;
-  /** Package price from, in site currency */
+  /** Describes the photograph for screen readers */
+  imageAlt: string;
+  /** CSS object-position for editorial cropping */
+  imagePosition?: string;
+  /** Package price from, in site currency — demo value */
   price?: number;
+  /** What the price covers ("4 nights for two"), or the benefit when there is no price */
   priceNote?: string;
   inclusions: string[];
   minNights?: number;
