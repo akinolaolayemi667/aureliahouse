@@ -1,0 +1,130 @@
+import { unsplash } from '@/lib/images';
+import type { Room } from './types';
+
+export const rooms: Room[] = [
+  {
+    id: 'room-garden',
+    slug: 'garden-room',
+    name: 'Garden Room',
+    category: 'Room',
+    tagline: 'Linen, limestone and the scent of jasmine',
+    description:
+      'Opening onto a private terrace wrapped in olive and jasmine, the Garden Room is a study in restraint — hand-plastered walls, oak floors and a deep soaking tub set beneath a skylight.',
+    price: 640,
+    size: 38,
+    guests: 2,
+    beds: 'King bed',
+    view: 'Courtyard garden',
+    image: unsplash('1582719478250-c89cae4dc85b'),
+    gallery: [unsplash('1590490360182-c33d57733427'), unsplash('1540518614846-7eded433c457')],
+    amenities: ['Private terrace', 'Soaking tub', 'Rain shower', 'Nespresso & tea ritual', 'Egyptian cotton linens'],
+  },
+  {
+    id: 'room-sea-view',
+    slug: 'sea-view-room',
+    name: 'Sea View Room',
+    category: 'Room',
+    tagline: 'The Aegean framed like a painting',
+    description:
+      'Floor-to-ceiling glass draws the caldera into the room. Mornings begin with coffee on a sun-warmed balcony; evenings end with the sky turning gold over the water.',
+    price: 820,
+    size: 42,
+    guests: 2,
+    beds: 'King bed',
+    view: 'Caldera & sea',
+    image: unsplash('1611892440504-42a792e24d32'),
+    gallery: [unsplash('1618773928121-c32242e63f39'), unsplash('1596394516093-501ba68a0ba6')],
+    amenities: ['Sea-facing balcony', 'Walk-in rain shower', 'Curated minibar', 'Bose sound system', 'Daily turndown'],
+  },
+  {
+    id: 'suite-cliff',
+    slug: 'cliff-suite',
+    name: 'Cliff Suite',
+    category: 'Suite',
+    tagline: 'Suspended between sky and sea',
+    description:
+      'Carved into the cliffside, the Cliff Suite pairs a separate lounge with a sheltered terrace and heated plunge pool — a private world for unhurried days.',
+    price: 1280,
+    size: 72,
+    guests: 3,
+    beds: 'King bed & day bed',
+    view: 'Uninterrupted caldera',
+    image: unsplash('1631049307264-da0ec9d70304'),
+    gallery: [unsplash('1578683010236-d716f9a3f461'), unsplash('1571896349842-33c89424de2d')],
+    featured: true,
+    amenities: ['Heated plunge pool', 'Separate lounge', 'Freestanding bath', 'Personal host', 'In-suite breakfast'],
+  },
+  {
+    id: 'suite-atelier',
+    slug: 'atelier-suite',
+    name: 'Atelier Suite',
+    category: 'Suite',
+    tagline: 'An artist’s loft reimagined',
+    description:
+      'Double-height ceilings, a mezzanine library and works from local artisans give the Atelier Suite the quiet energy of a studio — softened by linen, clay and candlelight.',
+    price: 1450,
+    size: 84,
+    guests: 3,
+    beds: 'King bed',
+    view: 'Village rooftops & sea',
+    image: unsplash('1616594039964-ae9021a400a0'),
+    gallery: [unsplash('1560185007-cde436f6a4d0'), unsplash('1505693416388-ac5ce068fe85')],
+    featured: true,
+    amenities: ['Mezzanine library', 'Outdoor shower', 'Record player & vinyl', 'Private terrace', 'Personal host'],
+  },
+  {
+    id: 'suite-aurelia',
+    slug: 'aurelia-suite',
+    name: 'The Aurelia Suite',
+    category: 'Signature Suite',
+    tagline: 'The house’s most intimate address',
+    description:
+      'Our signature suite occupies the entire upper level: two bedrooms, a sunset terrace with infinity pool, and a dining room where our chefs prepare private suppers on request.',
+    price: 3200,
+    size: 160,
+    guests: 4,
+    beds: 'Two king beds',
+    view: 'Panoramic caldera & sunset',
+    image: unsplash('1590490360182-c33d57733427'),
+    gallery: [unsplash('1566073771259-6a8506099945'), unsplash('1520250497591-112f2f40a3f4')],
+    featured: true,
+    amenities: [
+      'Private infinity pool',
+      'Two bedrooms',
+      'Private dining room',
+      'Dedicated butler',
+      'Airport transfers',
+      'In-suite spa treatments',
+    ],
+  },
+  {
+    id: 'villa-olive',
+    slug: 'olive-grove-villa',
+    name: 'Olive Grove Villa',
+    category: 'Villa',
+    tagline: 'A private estate within the estate',
+    description:
+      'Set apart among century-old olive trees, the villa offers three bedrooms, a walled garden, a heated pool and an outdoor kitchen — hospitality at its most personal.',
+    price: 4600,
+    size: 240,
+    guests: 6,
+    beds: 'Three king beds',
+    view: 'Olive grove & distant sea',
+    image: unsplash('1584132967334-10e028bd69f7'),
+    gallery: [unsplash('1602002418082-a4443e081dd1'), unsplash('1571003123894-1f0594d2b5d9')],
+    amenities: [
+      'Heated private pool',
+      'Walled garden',
+      'Outdoor kitchen',
+      'Private chef on request',
+      'Dedicated villa host',
+      'Chauffeur service',
+    ],
+  },
+];
+
+export const featuredRooms = rooms.filter((room) => room.featured);
+
+export function getRoomBySlug(slug: string | undefined) {
+  return rooms.find((room) => room.slug === slug);
+}
