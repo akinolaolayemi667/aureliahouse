@@ -45,7 +45,7 @@ export default function StyleguidePage() {
   usePageMeta({ title: 'Visual Language', noIndex: true });
 
   const [heroRoom, detailRoom, , , signatureRoom] = rooms;
-  const [yoga, sailing] = experiences;
+  const [yoga, sailing, , , coastalWalk] = experiences;
   const [restaurant] = dining;
 
   return (
@@ -59,8 +59,8 @@ export default function StyleguidePage() {
           <TextReveal as="h1" immediate delay={0.1} text="Quiet luxury, composed." className="max-w-5xl text-display" />
           <Reveal immediate delay={0.5} className="mt-10 grid-editorial">
             <p className="col-span-4 text-lead text-fg-muted md:col-span-6 md:col-start-7">
-              Intimacy, architecture and nature, expressed through restraint. The house feels expensive
-              because of composition, not decoration.
+              Mediterranean quiet luxury: an editorial, organic-modern language of intimacy, architecture
+              and nature. The house feels expensive because of composition, not decoration.
             </p>
           </Reveal>
         </Container>
@@ -246,10 +246,55 @@ export default function StyleguidePage() {
         </ImageWrapper>
       </section>
 
+      {/* Mediterranean warmth */}
+      <Section spacing="md" tone="sand" textured>
+        <Container>
+          <Divider label="05 — Mediterranean Warmth" className="mb-16" />
+          <div className="grid-editorial items-center gap-y-14">
+            <div className="col-span-4 md:col-span-5 md:col-start-2">
+              <ImageWrapper
+                src={coastalWalk!.image}
+                alt={coastalWalk!.title}
+                ratio="tall"
+                shape="arch"
+                reveal
+                sizes="(min-width: 48rem) 40vw, 100vw"
+              />
+            </div>
+            <div className="col-span-4 md:col-span-5 md:col-start-8">
+              <SectionHeading
+                size="h2"
+                eyebrow="Organic modern"
+                title={
+                  <>
+                    Sunlight, stone and <em className="serif-italic">slow</em> hours
+                  </>
+                }
+                description="Warmth comes from material, not ornament: a limestone grain on flat surfaces, a sun-warmed grade across all photography, the occasional arch borrowed from island architecture, and italic serif accents that soften the headlines."
+              />
+              <Divider className="my-12" />
+              <dl className="grid grid-cols-2 gap-8">
+                {[
+                  ['Surface', 'Sand · limestone grain'],
+                  ['Photography', 'Warm grade · golden hour'],
+                  ['Shape', 'Arch, used sparingly'],
+                  ['Type accent', 'Cormorant italic'],
+                ].map(([term, detail]) => (
+                  <div key={term}>
+                    <dt className="eyebrow text-accent">{term}</dt>
+                    <dd className="mt-2 text-small text-fg-muted">{detail}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
       {/* Motion */}
       <Section spacing="md" tone="charcoal">
         <Container>
-          <Divider label="05 — Motion" className="mb-16" />
+          <Divider label="06 — Motion" className="mb-16" />
           <div className="grid-editorial gap-y-16">
             <div className="col-span-4 md:col-span-5">
               <SectionHeading

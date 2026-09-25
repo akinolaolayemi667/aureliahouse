@@ -54,6 +54,10 @@ type ImageWrapperProps = {
   zoomOnHover?: boolean;
   /** Mask-reveal the frame as it scrolls into view, from the given edge */
   reveal?: MaskOrigin | boolean;
+  /** `arch` echoes Mediterranean architecture — use sparingly, on portrait crops */
+  shape?: 'rect' | 'arch';
+  /** Apply the warm house colour grade (on by default) */
+  graded?: boolean;
   /** CSS object-position for editorial cropping, e.g. "center 30%" */
   position?: string;
   className?: string;
@@ -71,6 +75,8 @@ export function ImageWrapper({
   overlay = 'none',
   zoomOnHover = false,
   reveal = false,
+  shape = 'rect',
+  graded = true,
   position,
   className,
   imageClassName,
@@ -100,6 +106,7 @@ export function ImageWrapper({
         className={cn(
           'absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1400ms] ease-out',
           loaded ? 'opacity-100' : 'opacity-0',
+          graded && 'photo-grade',
           zoomOnHover && 'group-hover:scale-[1.035]',
           imageClassName,
         )}
@@ -115,7 +122,12 @@ export function ImageWrapper({
     </>
   );
 
-  const wrapperClasses = cn('group relative isolate overflow-hidden', ratios[ratio], className);
+  const wrapperClasses = cn(
+    'group relative isolate overflow-hidden',
+    ratios[ratio],
+    shape === 'arch' && 'rounded-t-full',
+    className,
+  );
 
   if (reveal) {
     return (
