@@ -55,6 +55,14 @@ export const homeOffers = {
   priceNote: 'Indicative prices; availability and final rates are confirmed on enquiry.',
 };
 
+export const homeDestination = {
+  eyebrow: 'The destination',
+  title: 'Close to Everything.\nFar From Ordinary.',
+  titleEmphasis: 'Ordinary.',
+  description:
+    'Aurelia House is positioned to make the surrounding landscape part of the stay — with places to explore, quiet corners to discover and experiences worth taking the long way to.',
+};
+
 export const homeDining = {
   eyebrow: 'At the table',
   title: 'Food With\na Sense of Place.',

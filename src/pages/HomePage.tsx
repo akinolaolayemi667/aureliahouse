@@ -1,3 +1,4 @@
+import { HomeDestination } from '@/components/home/HomeDestination';
 import { HomeDining } from '@/components/home/HomeDining';
 import { HomeExperiences } from '@/components/home/HomeExperiences';
 import { HomeHero } from '@/components/home/HomeHero';
@@ -17,6 +18,7 @@ export default function HomePage() {
       <HomeDining />
       <HomeSpa />
       <HomeOffers />
+      <HomeDestination />
     </>
   );
 }

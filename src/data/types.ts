@@ -84,6 +84,25 @@ export type WellnessCategory = {
   imagePosition?: string;
 };
 
+/** A nearby place, placed on the illustrative map by travel time and bearing from the house */
+export type Destination = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  /** Approximate travel time from the house */
+  minutes: number;
+  /** Compass bearing from the house in degrees (0 = north) — illustrative, not geographic */
+  bearing: number;
+  /** Which side of its marker the map label sits on */
+  labelSide: 'left' | 'right';
+  image: string;
+  /** Describes the photograph for screen readers */
+  imageAlt: string;
+  /** CSS object-position for editorial cropping */
+  imagePosition?: string;
+};
+
 export type Offer = {
   id: string;
   slug: string;
